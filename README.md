@@ -1,7 +1,3 @@
-# Installation
-
-Lien de l'image : https://hub.docker.com/r/mattrayner/lamp
-
 ## Lancement / première installation
 
 > docker docker-compose up -d
