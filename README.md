@@ -3,4 +3,4 @@
 > docker docker-compose up -d
 
 ### Adresse
-L'application est accessible sur http://localhost:8001/
+L'application est accessible sur http://localhost/

@@ -1,4 +1,8 @@
 <?php
+$monip = '45';
+if ($monip == 45) {
+    echo "test";
+}
 //On inclut le fichier dont on a besoin (ici à la racine de notre site)
 require 'Database.php';
 ?>
