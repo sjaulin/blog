@@ -1,9 +1,14 @@
 <?php
+namespace App\src\DAO;
+
+use PDO;
+use Exception;
+
 /**
- * Database class
+ * DAO class
  */
 // https://www.php.net/manual/fr/language.oop5.abstract.php
-abstract class Database
+abstract class DAO
 {
     const DB_HOST = 'mysql:host=mariadb;dbname=testdb;charset=utf8';
     const DB_USER = 'testuser';
@@ -21,18 +26,13 @@ abstract class Database
         return $this->connection;
     }
 
-    //Méthode de connexion à notre base de données
     private function getConnection()
     {
-        //Tentative de connexion à la base de données
         try {
             $this->connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //On renvoie la connexion
             return $this->connection;
-        }
-        //On lève une erreur si la connexion échoue
-        catch (Exception $errorConnection) {
+        } catch (Exception $errorConnection) {
             die('Erreur de connection :'.$errorConnection->getMessage());
         }
     }

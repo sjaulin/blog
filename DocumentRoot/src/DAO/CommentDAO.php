@@ -1,5 +1,7 @@
 <?php
-class Comment extends Database
+namespace App\src\DAO;
+
+class CommentDAO extends DAO
 {
     public function getCommentsFromPost($postId)
     {

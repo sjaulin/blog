@@ -1,5 +1,7 @@
 <?php
-class Post extends Database
+namespace App\src\DAO;
+
+class PostDAO extends DAO
 {
     public function getPosts()
     {
