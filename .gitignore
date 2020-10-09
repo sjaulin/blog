@@ -1,3 +1,4 @@
-/.vscode/
-/nbproject/private/
-/vendor/
+.vscode/
+nbproject/
+DocumentRoot/vendor/
+DocumentRoot/vendor/composer/
