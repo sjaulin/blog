@@ -1,6 +1,4 @@
 <?php
-require '../vendor/autoload.php';
-
 use App\src\DAO\PostDAO;
 ?>
 <!DOCTYPE html>
@@ -20,7 +18,7 @@ use App\src\DAO\PostDAO;
         while ($post = $posts->fetch()) {
             ?>
         <div>
-            <h2><a href="single.php?postId=<?= htmlspecialchars($post->id);?>"><?= htmlspecialchars($post->title);?></a></h2>
+            <h2><a href="../public/index.php?route=post&postId=<?= htmlspecialchars($post->id);?>"><?= htmlspecialchars($post->title);?></a></h2>
             <p><?= htmlspecialchars($post->content);?></p>
             <p><?= htmlspecialchars($post->user_id);?></p>
             <p>Créé le : <?= htmlspecialchars($post->create_date);?></p>
