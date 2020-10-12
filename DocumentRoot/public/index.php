@@ -1,4 +1,5 @@
 <?php
+require '../config/dev.php';
 require '../vendor/autoload.php';
 
 try {
