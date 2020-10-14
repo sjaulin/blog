@@ -1,4 +1,7 @@
 <?php
+/**
+ * Comment Data Access Object.
+ */
 namespace App\src\DAO;
 
 class CommentDAO extends DAO

@@ -5,9 +5,9 @@ use PDO;
 use Exception;
 
 /**
- * DAO class
+ * Data Acces Object.
  */
-// https://www.php.net/manual/fr/language.oop5.abstract.php
+
 abstract class DAO
 {
 

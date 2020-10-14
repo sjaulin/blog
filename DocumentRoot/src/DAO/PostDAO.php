@@ -1,4 +1,7 @@
 <?php
+/**
+ * Post Data Access Object.
+ */
 namespace App\src\DAO;
 
 class PostDAO extends DAO
