@@ -40,12 +40,10 @@ abstract class DAO
             $result = $this->checkConnection()->prepare($sql);
             // pour retourner sous forme d'objet non pas de tableau
             // Pour passer le nom de la classe qui a appelée la méthode dynamiquement, on utilise static::class
-            $result->setFetchMode(PDO::FETCH_CLASS, static::class);
             $result->execute($parameters);
             return $result;
         }
         $result = $this->checkConnection()->query($sql);
-        $result->setFetchMode(PDO::FETCH_CLASS, static::class);
         return $result;
     }
 }

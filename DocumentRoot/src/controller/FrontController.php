@@ -23,9 +23,15 @@ class FrontController
         require '../templates/home.php';
     }
 
+    /**
+     * Put post to view.
+     *
+     * @param int $postId The post Id.
+     * @return void
+     */
     public function post($postId)
     {
-        $posts = $this->postDAO->getPost($postId);
+        $post = $this->postDAO->getPost($postId);
         $comments = $this->commentDAO->getCommentsFromPost($postId);
         require '../templates/single.php';
     }
