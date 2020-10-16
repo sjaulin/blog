@@ -5,17 +5,17 @@
 <p>En construction</p>
 
 <?php
-foreach ($posts as $post) {
+foreach ($articles as $article) {
     ?>
     <div>
         <h2>
-            <a href="../public/index.php?route=post&postId=<?= htmlspecialchars($post->getId()); ?>">
-                <?= htmlspecialchars($post->getTitle()); ?>
+            <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
+                <?= htmlspecialchars($article->getTitle()); ?>
             </a>
         </h2>
-        <p><?= htmlspecialchars($post->getContent()); ?></p>
-        <p><?= htmlspecialchars($post->getUserId()); ?></p>
-        <p>Créé le : <?= htmlspecialchars($post->getCreatedDate()); ?></p>
+        <p><?= htmlspecialchars($article->getContent()); ?></p>
+        <p><?= htmlspecialchars($article->getUserId()); ?></p>
+        <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
     </div>
     <br>
     <?php

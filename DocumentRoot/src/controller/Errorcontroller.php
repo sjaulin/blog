@@ -9,7 +9,7 @@ class ErrorController
         require '../templates/error_404.php';
     }
 
-    public function errorServer()
+    public function errorServer($message = '')
     {
         require '../templates/error_500.php';
     }

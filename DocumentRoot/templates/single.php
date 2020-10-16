@@ -1,10 +1,10 @@
-<?php $this->title = "Post"; // TODO : déplacer dans FrontController ??>
+<?php $this->title = "Article"; // TODO : déplacer dans FrontController ??>
 <h1>Mon blog</h1>
 <p>En construction</p>
 <div>
-    <h2><?= htmlspecialchars($post->getTitle()); ?></h2>
-    <p><?= htmlspecialchars($post->getContent()); ?></p>
-    <p>Créé le : <?= htmlspecialchars($post->getCreatedDate()); ?></p>
+    <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
+    <p><?= htmlspecialchars($article->getContent()); ?></p>
+    <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
 </div>
 <br>
 <a href="../public/index.php">Retour à l'accueil</a>
@@ -16,7 +16,7 @@
         ?>
         <h4><?= htmlspecialchars($comment->getUserId()); ?></h4>
         <p><?= htmlspecialchars($comment->getContent()); ?></p>
-        <p>Posté le <?= htmlspecialchars($comment->getCreatedDate()); ?></p><?php
+        <p>Publié le <?= htmlspecialchars($comment->getCreatedDate()); ?></p><?php
     }
     ?>
 </div>

@@ -22,8 +22,8 @@ class Router
     {
         try {
             if (isset($_GET['route'])) {
-                if ($_GET['route'] === 'post') {
-                    $this->frontController->post($_GET['postId']);
+                if ($_GET['route'] === 'article' && isset($_GET['articleId'])) {
+                    $this->frontController->article($_GET['articleId']);
                 } else {
                     $this->errorController->errorNotFound();
                 }
@@ -31,7 +31,7 @@ class Router
                 $this->frontController->home();
             }
         } catch (Exception $e) {
-            $this->errorController->errorServer();
+            $this->errorController->errorServer($e->getMessage());
         }
     }
 }

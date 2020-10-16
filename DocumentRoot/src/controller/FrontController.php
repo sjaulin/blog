@@ -2,50 +2,50 @@
 
 namespace App\src\controller;
 
-use App\src\DAO\PostDAO;
+use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\model\View;
 
 class FrontController
 {
 
-    private $postDAO;
+    private $articleDAO;
     private $commentDAO;
     private $view;
 
     public function __construct()
     {
-        $this->postDAO = new PostDAO();
+        $this->articleDAO = new ArticleDAO();
         $this->commentDAO = new CommentDAO();
         $this->view = new View();
     }
 
     public function home()
     {
-        $posts = $this->postDAO->getPosts();
+        $articles = $this->articleDAO->getArticles();
         return $this->view->render(
             'home',
             [
-                'posts' => $posts,
+                'articles' => $articles,
             ],
         );
     }
 
     /**
-     * Put post to view.
+     * Put article to view.
      *
-     * @param int $postId The post Id.
+     * @param int $articleId The article Id.
      * @return void
      */
-    public function post($postId)
+    public function article($articleId)
     {
-        $post = $this->postDAO->getPost($postId);
-        $comments = $this->commentDAO->getCommentsFromPost($postId);
+        $article = $this->articleDAO->getarticle($articleId);
+        $comments = $this->commentDAO->getCommentsFromArticle($articleId);
         //TODO Ajouter le titre de la page envoyé au template base ?
         return $this->view->render(
             'single',
             [
-                'post' => $post,
+                'article' => $article,
                 'comments' => $comments,
             ],
         );
