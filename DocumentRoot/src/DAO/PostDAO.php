@@ -29,8 +29,7 @@ class PostDAO extends DAO
         $result = $this->createQuery($sql);
         $posts = [];
         foreach ($result as $row) {
-            $postId = $row['id'];
-            $posts[$postId] = $this->buildObject($row);
+            $posts[$row['id']] = $this->buildObject($row);
         }
         $result->closeCursor();
         return $posts;
@@ -44,7 +43,7 @@ class PostDAO extends DAO
      */
     public function getPost($postId)
     {
-        $sql = 'SELECT id, title, content, user_id, create_date FROM post WHERE id = ?';
+        $sql = 'SELECT id, title, content, user_id, create_date, update_date FROM post WHERE id = ?';
         $result = $this->createQuery($sql, [$postId]);
         $post = $result->fetch();
         $result->closeCursor();
