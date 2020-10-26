@@ -10,7 +10,8 @@ use App\src\model\Article;
 
 class ArticleDAO extends DAO
 {
-    // Convert database cols to object properties.
+    // Convert database cols to object properties. (hydratation)
+    //TODO : https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1666289-manipulation-de-donnees-stockees#/id/r-1669539
     private function buildObject($row)
     {
         $article = new Article();
@@ -48,5 +49,13 @@ class ArticleDAO extends DAO
         $article = $result->fetch();
         $result->closeCursor();
         return $this->buildObject($article);
+    }
+
+    public function addArticle($article)
+    {
+        //Permet de récupérer les variables $title, $content et $author
+        extract($article);
+        $sql = 'INSERT INTO article (title, content, user_id, create_date) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($sql, [$title, $content, $userId]);
     }
 }

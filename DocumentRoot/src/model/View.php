@@ -12,6 +12,7 @@ class View
         $this->file = '../templates/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
         $view = $this->renderFile('../templates/base.php', [
+            'alert' => !empty($data['alert']) ? $data['alert'] : '',
             'title' => $this->title,
             'content' => $content
         ]);

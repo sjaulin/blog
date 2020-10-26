@@ -3,7 +3,7 @@
 
 <h1>Mon blog</h1>
 <p>En construction</p>
-
+<a href="../public/index.php?route=addArticle">Nouvel article</a>
 <?php
 foreach ($articles as $article) {
     ?>

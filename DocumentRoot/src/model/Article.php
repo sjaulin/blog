@@ -96,7 +96,7 @@ class Article
      */
     public function setUserId($userId)
     {
-        $this->user = $userId;
+        $this->userId = $userId;
     }
 
     /**

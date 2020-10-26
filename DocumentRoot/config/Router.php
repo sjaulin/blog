@@ -2,19 +2,21 @@
 
 namespace App\config;
 
-use App\src\controller\FrontController;
+use App\src\controller\BackController;
 use App\src\controller\ErrorController;
+use App\src\controller\FrontController;
 use Exception;
 
 class Router
 {
-
     private $frontController;
+    private $backController;
     private $errorController;
 
     public function __construct()
     {
         $this->frontController = new FrontController();
+        $this->backController = new BackController();
         $this->errorController = new ErrorController();
     }
 
@@ -22,8 +24,10 @@ class Router
     {
         try {
             if (isset($_GET['route'])) {
-                if ($_GET['route'] === 'article' && isset($_GET['articleId'])) {
+                if ($_GET['route'] === 'article' && !empty($_GET['articleId'])) {
                     $this->frontController->article($_GET['articleId']);
+                } elseif ($_GET['route'] === 'addArticle') {
+                    $this->backController->addArticle($_POST);
                 } else {
                     $this->errorController->errorNotFound();
                 }
@@ -31,7 +35,7 @@ class Router
                 $this->frontController->home();
             }
         } catch (Exception $e) {
-            $this->errorController->errorServer($e->getMessage());
+            $this->errorController->errorServer();
         }
     }
 }
