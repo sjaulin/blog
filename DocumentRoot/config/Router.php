@@ -16,7 +16,7 @@ class Router
 
     public function __construct()
     {
-        $this->request = new Request();
+        $this->request = new Request(); //TODO Pourquoi ici et dans le constructeur du controleur et vue
         $this->frontController = new FrontController();
         $this->backController = new BackController();
         $this->errorController = new ErrorController();

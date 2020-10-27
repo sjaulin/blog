@@ -2,19 +2,29 @@
 
 namespace App\src\model;
 
+use App\config\Request;
+
 class View
 {
     private $file;
     private $title;
+    private $request;
+    private $session;
+
+    public function __construct()
+    {
+        $this->request = new Request();//TODO Pourquoi ici et dans le constructeur du controleur et router
+        $this->session = $this->request->getSession();
+    }
 
     public function render($template, $data = [])
     {
         $this->file = '../templates/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
         $view = $this->renderFile('../templates/base.php', [
-            'alert' => !empty($data['alert']) ? $data['alert'] : '',
             'title' => $this->title,
-            'content' => $content
+            'content' => $content,
+            'session' => $this->session,
         ]);
         echo $view;
     }

@@ -1,6 +1,8 @@
 
 <?php $this->title = "Accueil"; // TODO : déplacer dans FrontController ? ?>
 
+<?= $this->session->show('add_article'); // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php)?>
+
 <h1>Mon blog</h1>
 <p>En construction</p>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
