@@ -23,7 +23,7 @@ class Article
     /**
      * @var int
      */
-    private $userId;
+    private $author;
 
     /**
      * @var \DateTime
@@ -86,17 +86,17 @@ class Article
     /**
      * @return int
      */
-    public function getUserId()
+    public function getAuthor()
     {
-        return $this->userId;
+        return $this->author;
     }
 
     /**
-     * @param int $userId
+     * @param int $author
      */
-    public function setUserId($userId)
+    public function setAuthor($author)
     {
-        $this->userId = $userId;
+        $this->author = $author;
     }
 
     /**

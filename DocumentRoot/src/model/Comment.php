@@ -12,7 +12,7 @@ class Comment
     /**
      * @var string
      */
-    private $userId;
+    private $author;
 
     /**
      * @var string
@@ -43,17 +43,17 @@ class Comment
     /**
      * @return int
      */
-    public function getUserId()
+    public function getauthor()
     {
-        return $this->userId;
+        return $this->author;
     }
 
     /**
-     * @param int $userId
+     * @param int $author
      */
-    public function setUserId($userId)
+    public function setAuthor($author)
     {
-        $this->userId = $userId;
+        $this->author = $author;
     }
 
     /**

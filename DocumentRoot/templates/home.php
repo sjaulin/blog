@@ -16,7 +16,7 @@ foreach ($articles as $article) {
             </a>
         </h2>
         <p><?= htmlspecialchars($article->getContent()); ?></p>
-        <p><?= htmlspecialchars($article->getUserId()); ?></p>
+        <p><?= htmlspecialchars($article->getAuthor()); ?></p>
         <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
     </div>
     <br>

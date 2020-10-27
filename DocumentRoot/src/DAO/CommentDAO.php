@@ -12,7 +12,7 @@ class CommentDAO extends DAO
     {
         $comment = new Comment();
         $comment->setId($row['id']);
-        $comment->setUserId($row['user_id']);
+        $comment->setAuthor($row['author']);
         $comment->setContent($row['content']);
         $comment->setCreatedDate($row['create_date']);
         return $comment;
@@ -20,7 +20,7 @@ class CommentDAO extends DAO
 
     public function getCommentsFromArticle($articleId)
     {
-        $sql = 'SELECT id, content, user_id, create_date FROM comment WHERE article_id = ? ORDER BY create_date DESC';
+        $sql = 'SELECT id, content, author, create_date FROM comment WHERE article_id = ? ORDER BY create_date DESC';
         $result = $this->createQuery($sql, [$articleId]);
         $comments = [];
         foreach ($result as $row) {

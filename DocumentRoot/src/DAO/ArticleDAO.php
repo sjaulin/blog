@@ -19,7 +19,7 @@ class ArticleDAO extends DAO
         $article->setId($row['id']);
         $article->setTitle($row['title']);
         $article->setContent($row['content']);
-        $article->setUserId($row['user_id']);
+        $article->setAuthor($row['author']);
         $article->setCreatedDate($row['create_date']);
         $article->setUpdatedDate($row['update_date']);
         return $article;
@@ -27,7 +27,7 @@ class ArticleDAO extends DAO
 
     public function getArticles()
     {
-        $sql = 'SELECT id, title, content, user_id, create_date, update_date FROM article ORDER BY id DESC';
+        $sql = 'SELECT id, title, content, author, create_date, update_date FROM article ORDER BY id DESC';
         $result = $this->createQuery($sql);
         $articles = [];
         foreach ($result as $row) {
@@ -45,7 +45,7 @@ class ArticleDAO extends DAO
      */
     public function getArticle($articleId)
     {
-        $sql = 'SELECT id, title, content, user_id, create_date, update_date FROM article WHERE id = ?';
+        $sql = 'SELECT id, title, content, author, create_date, update_date FROM article WHERE id = ?';
         $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
         $result->closeCursor();
@@ -55,7 +55,18 @@ class ArticleDAO extends DAO
     public function addArticle($post)
     {
         //Permet de récupérer les variables $title, $content et $author
-        $sql = 'INSERT INTO article (title, content, user_id, create_date) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('userId')]);
+        $sql = 'INSERT INTO article (title, content, author, create_date) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('author')]);
+    }
+
+    public function editArticle(Parameter $post, $articleId)
+    {
+        $sql = 'UPDATE article SET title=:title, content=:content, author=:author WHERE id=:articleId';
+        $this->createQuery($sql, [
+            'title' => $post->get('title'),
+            'content' => $post->get('content'),
+            'author' => $post->get('author'),
+            'articleId' => $articleId
+        ]);
     }
 }
