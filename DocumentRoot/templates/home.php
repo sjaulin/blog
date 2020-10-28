@@ -4,6 +4,7 @@
 <?php // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php) ?>
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
+<?= $this->session->show('delete_article'); ?>
 
 <h1>Mon blog</h1>
 <p>En construction</p>

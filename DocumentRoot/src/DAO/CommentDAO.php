@@ -4,6 +4,7 @@
  */
 namespace App\src\DAO;
 
+use App\config\Parameter;
 use App\src\model\Comment;
 
 class CommentDAO extends DAO
@@ -12,7 +13,7 @@ class CommentDAO extends DAO
     {
         $comment = new Comment();
         $comment->setId($row['id']);
-        $comment->setAuthor($row['author']);
+        $comment->setPseudo($row['pseudo']);
         $comment->setContent($row['content']);
         $comment->setCreatedDate($row['create_date']);
         return $comment;
@@ -20,7 +21,7 @@ class CommentDAO extends DAO
 
     public function getCommentsFromArticle($articleId)
     {
-        $sql = 'SELECT id, content, author, create_date FROM comment WHERE article_id = ? ORDER BY create_date DESC';
+        $sql = 'SELECT id, content, pseudo, create_date FROM comment WHERE article_id = ? ORDER BY create_date DESC';
         $result = $this->createQuery($sql, [$articleId]);
         $comments = [];
         foreach ($result as $row) {
@@ -28,5 +29,11 @@ class CommentDAO extends DAO
         }
         $result->closeCursor();
         return $comments;
+    }
+
+    public function addComment(Parameter $post, $articleId)
+    {
+        $sql = 'INSERT INTO comment (pseudo, content, create_date, article_id) VALUES (?, ?, NOW(), ?)';
+        $this->createQuery($sql, [$post->get('pseudo'), $post->get('content'), $articleId]);
     }
 }
