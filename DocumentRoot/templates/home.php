@@ -1,7 +1,8 @@
 
 <?php $this->title = "Accueil"; // TODO : déplacer dans FrontController ? ?>
 
-<?= $this->session->show('add_article'); // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php)?>
+<?php // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php) ?>
+<?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
 
 <h1>Mon blog</h1>

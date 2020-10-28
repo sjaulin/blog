@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\src\controller;
 
 use App\config\Parameter;
@@ -9,26 +8,53 @@ class BackController extends Controller
 {
     public function addArticle(Parameter $post)
     {
+        // The form is submitted.
         if ($post->get('submit')) {
-            $this->articleDAO->addArticle($post);
-            $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-            header('Location: ../public/index.php');
+            // Without error.
+            $errors = $this->validation->validate($post, 'Article');
+            if (!$errors) {
+                $this->articleDAO->addArticle($post);
+                $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                header('Location: ../public/index.php');
+            }
+            // With some errors.
+            return $this->view->render('add_article', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
         }
-        return $this->view->render('add_article', [
-            'post' => $post
-        ]);
+
+        // the form is displayed.
+        return $this->view->render('add_article');
     }
-    
+
     public function editArticle(Parameter $post, $articleId)
     {
         $article = $this->articleDAO->getArticle($articleId);
+        // The form is submitted.
         if ($post->get('submit')) {
-            $this->articleDAO->editArticle($post, $articleId);
-            $this->session->set('edit_article', 'L\' article a bien été modifié');
-            header('Location: ../public/index.php');
+            $errors = $this->validation->validate($post, 'Article');
+            // Without error.
+            if (!$errors) {
+                $this->articleDAO->editArticle($post, $articleId);
+                $this->session->set('edit_article', 'L\' article a bien été modifié');
+                header('Location: ../public/index.php');
+            }
+            // With some errors.
+            return $this->view->render('edit_article', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
         }
+
+        // the form is displayed, set default form values.
+        $post->set('id', $article->getId());
+        $post->set('title', $article->getTitle());
+        $post->set('content', $article->getContent());
+        $post->set('author', $article->getAuthor());
+
         return $this->view->render('edit_article', [
-            'article' => $article
+            'post' => $post
         ]);
     }
 }
