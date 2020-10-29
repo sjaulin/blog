@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Oct 28, 2020 at 03:27 PM
+-- Generation Time: Oct 29, 2020 at 10:12 AM
 -- Server version: 10.1.47-MariaDB-1~bionic
 -- PHP Version: 7.4.11
 
@@ -76,10 +76,11 @@ CREATE TABLE `category_article` (
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
-  `author` int(11) NOT NULL,
+  `pseudo` int(11) NOT NULL,
   `content` varchar(45) DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
-  `create_date` datetime NOT NULL
+  `create_date` datetime NOT NULL,
+  `flag` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -141,9 +142,9 @@ ALTER TABLE `category_article`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`,`article_id`,`author`),
+  ADD PRIMARY KEY (`id`,`article_id`,`pseudo`),
   ADD KEY `fk_comment_post_idx` (`article_id`),
-  ADD KEY `fk_comment_user1_idx` (`author`);
+  ADD KEY `fk_comment_user1_idx` (`pseudo`);
 
 --
 -- Indexes for table `config`
@@ -214,7 +215,7 @@ ALTER TABLE `category_article`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `fk_comment_post` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`author`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`pseudo`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

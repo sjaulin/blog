@@ -1,4 +1,5 @@
-<?php $this->title = "Article"; // TODO : déplacer dans FrontController ?>
+<?php $this->title = "Article"; // TODO : déplacer dans FrontController 
+?>
 <h1>Mon blog</h1>
 <p>En construction</p>
 <div>
@@ -19,12 +20,17 @@
     <?php include('form_comment.php'); ?>
     <h3>Commentaires</h3>
     <?php
-    foreach ($comments as $comment) {
-        ?>
+    foreach ($comments as $comment) { ?>
         <h4><?= htmlspecialchars($comment->getPseudo()); ?></h4>
         <p><?= htmlspecialchars($comment->getContent()); ?></p>
-        <p>Publié le <?= htmlspecialchars($comment->getCreatedDate()); ?></p><?php
-    }
-    ?>
+        <p>Publié le <?= htmlspecialchars($comment->getCreatedDate()); ?></p>
+        <?php if ($comment->isFlag()) { ?>
+            <p>Ce commentaire a déjà été signalé</p>
+        <?php } else { ?>
+            <p><a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
+        <?php } ?>
+        <p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+        <br>
+    <?php } ?>
 </div>
 </div>

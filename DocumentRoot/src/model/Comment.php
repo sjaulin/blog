@@ -87,4 +87,21 @@ class Comment
     {
         $this->createdDate = $createdDate;
     }
+
+    /**
+     * @return bool
+     */
+    public function isFlag()
+    {
+        return $this->flag;
+    }
+
+    /**
+     * @param bool $flag
+     */
+    public function setFlag($flag)
+    {
+        $this->flag = $flag;
+    }
+        
 }

@@ -5,7 +5,9 @@
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
 <?= $this->session->show('delete_article'); ?>
-
+<?= $this->session->show('add_comment'); ?>
+<?= $this->session->show('flag_comment'); ?>
+<?= $this->session->show('delete_comment'); ?>
 <h1>Mon blog</h1>
 <p>En construction</p>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
