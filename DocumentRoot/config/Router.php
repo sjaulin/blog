@@ -41,6 +41,10 @@ class Router
                     $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                 } elseif ($route === 'deleteComment') {
                     $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                } elseif ($route === 'register') {
+                    $this->frontController->register($this->request->getPost());
+                } elseif ($route === 'login') {
+                    $this->frontController->login($this->request->getPost());
                 } else {
                     $this->errorController->errorNotFound();
                 }
