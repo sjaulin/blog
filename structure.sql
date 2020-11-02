@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Oct 29, 2020 at 10:12 AM
+-- Generation Time: Nov 02, 2020 at 03:34 PM
 -- Server version: 10.1.47-MariaDB-1~bionic
 -- PHP Version: 7.4.11
 
@@ -30,12 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
   `author` int(11) NOT NULL,
-  `title` varchar(45) NOT NULL,
-  `content` varchar(45) NOT NULL,
+  `title` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `content` varchar(45) CHARACTER SET latin1 NOT NULL,
   `published` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Triggers `article`
@@ -53,8 +53,8 @@ DELIMITER ;
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `title` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `title` varchar(45) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `category` (
 CREATE TABLE `category_article` (
   `category_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -77,11 +77,11 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   `pseudo` int(11) NOT NULL,
-  `content` varchar(45) DEFAULT NULL,
+  `content` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -91,9 +91,20 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `config` (
   `id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `value` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `value` varchar(45) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `name` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -103,15 +114,16 @@ CREATE TABLE `config` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `firstname` varchar(45) DEFAULT NULL,
-  `lastname` varchar(45) DEFAULT NULL,
+  `pseudo` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `firstname` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `lastname` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `checked` tinyint(4) DEFAULT NULL,
   `enabled` tinyint(4) DEFAULT NULL,
   `publisher` tinyint(4) DEFAULT NULL,
-  `create_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `create_date` datetime NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -153,11 +165,18 @@ ALTER TABLE `config`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username_UNIQUE` (`username`);
+  ADD UNIQUE KEY `username_UNIQUE` (`pseudo`),
+  ADD KEY `fk_role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -185,6 +204,12 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -216,6 +241,12 @@ ALTER TABLE `category_article`
 ALTER TABLE `comment`
   ADD CONSTRAINT `fk_comment_post` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`pseudo`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
