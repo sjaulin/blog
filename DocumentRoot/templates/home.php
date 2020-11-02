@@ -1,6 +1,8 @@
 
 <?php $this->title = "Accueil"; // TODO : déplacer dans FrontController ? ?>
 
+<h1>Mon blog</h1>
+<p>En construction</p>
 <?php // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php) ?>
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
@@ -10,11 +12,18 @@
 <?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('register'); ?>
 <?= $this->session->show('login'); ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
-<a href="../public/index.php?route=register">Inscription</a>
-<a href="../public/index.php?route=login">Connexion</a>
-<a href="../public/index.php?route=addArticle">Nouvel article</a>
+<?= $this->session->show('logout'); ?>
+<?= $this->session->show('delete_account'); ?>
+<?php
+if ($this->session->get('pseudo')) { ?>
+    <a href="../public/index.php?route=logout">Déconnexion</a>
+    <a href="../public/index.php?route=profile">Profil</a>
+    <a href="../public/index.php?route=addArticle">Nouvel article</a>
+<?php } else { ?>
+    <a href="../public/index.php?route=register">Inscription</a>
+    <a href="../public/index.php?route=login">Connexion</a>
+<?php } ?>
+
 <?php
 foreach ($articles as $article) {
     ?>
