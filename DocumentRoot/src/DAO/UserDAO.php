@@ -12,14 +12,14 @@ class UserDAO extends DAO
         $user = new User();
         $user->setId($row['id']);
         $user->setPseudo($row['pseudo']);
-        $user->setCreatedDate($row['createdAt']);
+        $user->setCreatedDate($row['create_date']);
         $user->setRole($row['name']);
         return $user;
     }
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name ' .
+        $sql = 'SELECT user.id, user.pseudo, user.create_date, role.name ' .
             'FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];

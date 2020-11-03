@@ -7,29 +7,36 @@
     <p><?= htmlspecialchars($article->getContent()); ?></p>
     <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
 </div>
-<br>
-<div class="actions">
-    <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-    <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
-</div>
+<?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
+    <br>
+    <div class="actions">
+        <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
+        <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+    </div>
+<?php } ?>
 <br>
 <a href="../public/index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px">
-    <h3>Ajouter un commentaire</h3>
-    <?php include('form_comment.php'); ?>
+    <?php if ($this->session->get('pseudo')) { ?>
+        <h3>Ajouter un commentaire</h3>
+        <?php include('form_comment.php'); ?>
+    <?php } ?>
     <h3>Commentaires</h3>
     <?php
     foreach ($comments as $comment) { ?>
         <h4><?= htmlspecialchars($comment->getPseudo()); ?></h4>
         <p><?= htmlspecialchars($comment->getContent()); ?></p>
-        <p>Publié le <?= htmlspecialchars($comment->getCreatedDate()); ?></p>
-        <?php if ($comment->isFlag()) { ?>
+        <p>Dernière modification le <?= htmlspecialchars($comment->getCreatedDate()); ?></p>
+        <?php if ($this->session->get('pseudo') && $comment->isFlag()) { ?>
             <p>Ce commentaire a déjà été signalé</p>
-        <?php } else { ?>
+        <?php } elseif ($this->session->get('pseudo')) { ?>
             <p><a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
         <?php } ?>
-        <p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+
+        <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
+            <p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+        <?php } ?>
         <br>
     <?php } ?>
 </div>

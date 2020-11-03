@@ -80,7 +80,7 @@
         <tr>
             <td><?= htmlspecialchars($user->getId());?></td>
             <td><?= htmlspecialchars($user->getPseudo());?></td>
-            <td>Créé le : <?= htmlspecialchars($user->getCreatedAt());?></td>
+            <td>Créé le : <?= htmlspecialchars($user->getCreatedDate());?></td>
             <td><?= htmlspecialchars($user->getRole());?></td>
             <td>En construction</td>
         </tr>
