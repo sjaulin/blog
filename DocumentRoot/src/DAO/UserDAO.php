@@ -3,9 +3,34 @@
 namespace App\src\DAO;
 
 use App\config\Parameter;
+use App\src\model\User;
 
 class UserDAO extends DAO
 {
+    private function buildObject($row)
+    {
+        $user = new User();
+        $user->setId($row['id']);
+        $user->setPseudo($row['pseudo']);
+        $user->setCreatedDate($row['createdAt']);
+        $user->setRole($row['name']);
+        return $user;
+    }
+
+    public function getUsers()
+    {
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name ' .
+            'FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
+        $result = $this->createQuery($sql);
+        $users = [];
+        foreach ($result as $row) {
+            $userId = $row['id'];
+            $users[$userId] = $this->buildObject($row);
+        }
+        $result->closeCursor();
+        return $users;
+    }
+
     public function register(Parameter $post)
     {
         $sql = 'INSERT INTO user (pseudo, password, create_date, role_id) VALUES (?, ?, NOW(), ?)';
@@ -46,5 +71,11 @@ class UserDAO extends DAO
         // TODO Move article to an other user.
         $sql = 'DELETE FROM user WHERE pseudo = ?';
         $this->createQuery($sql, [$pseudo]);
+    }
+
+    public function deleteUser($userId)
+    {
+        $sql = 'DELETE FROM user WHERE id = ?';
+        $this->createQuery($sql, [$userId]);
     }
 }
