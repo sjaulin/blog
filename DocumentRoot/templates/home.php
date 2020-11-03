@@ -4,9 +4,6 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 <?php // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php) ?>
-<?= $this->session->show('add_article'); ?>
-<?= $this->session->show('edit_article'); ?>
-<?= $this->session->show('delete_article'); ?>
 <?= $this->session->show('add_comment'); ?>
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
@@ -21,7 +18,6 @@ if ($this->session->get('pseudo')) { ?>
     <?php if ($this->session->get('role') === 'admin') { ?>
         <a href="../public/index.php?route=administration">Administration</a>
     <?php } ?>
-    <a href="../public/index.php?route=addArticle">Nouvel article</a>
 <?php } else { ?>
     <a href="../public/index.php?route=register">Inscription</a>
     <a href="../public/index.php?route=login">Connexion</a>

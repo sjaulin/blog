@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 02, 2020 at 03:34 PM
+-- Generation Time: Nov 03, 2020 at 08:28 AM
 -- Server version: 10.1.47-MariaDB-1~bionic
 -- PHP Version: 7.4.11
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
-  `author` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `title` varchar(45) CHARACTER SET latin1 NOT NULL,
   `content` varchar(45) CHARACTER SET latin1 NOT NULL,
   `published` tinyint(4) DEFAULT NULL,
@@ -133,8 +133,8 @@ CREATE TABLE `user` (
 -- Indexes for table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`,`author`),
-  ADD KEY `fk_post_user1_idx` (`author`);
+  ADD PRIMARY KEY (`id`,`user_id`),
+  ADD KEY `fk_user_id` (`user_id`) USING BTREE;
 
 --
 -- Indexes for table `category`
@@ -226,7 +226,7 @@ ALTER TABLE `user`
 -- Constraints for table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `fk_post_user1` FOREIGN KEY (`author`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_post_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `category_article`

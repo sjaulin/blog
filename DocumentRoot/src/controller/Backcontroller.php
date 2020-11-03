@@ -1,5 +1,5 @@
 <?php
-
+// TODO Move to : UserController, ArticleController, CommentController ?
 namespace App\src\controller;
 
 use App\config\Parameter;
@@ -8,9 +8,12 @@ class BackController extends Controller
 {
     public function administration()
     {
-        return $this->view->render('administration');
+        $articles = $this->articleDAO->getArticles();
+        return $this->view->render('administration', [
+            'articles' => $articles
+        ]);
     }
-    
+
     public function addArticle(Parameter $post)
     {
         // The form is submitted.
@@ -18,9 +21,9 @@ class BackController extends Controller
             // Without error.
             $errors = $this->validation->validate($post, 'Article');
             if (!$errors) {
-                $this->articleDAO->addArticle($post);
+                $this->articleDAO->addArticle($post, $this->session->get('id'));
                 $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             // With some errors.
             return $this->view->render('add_article', [
@@ -41,9 +44,9 @@ class BackController extends Controller
             $errors = $this->validation->validate($post, 'Article');
             // Without error.
             if (!$errors) {
-                $this->articleDAO->editArticle($post, $articleId);
+                $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                 $this->session->set('edit_article', 'L\' article a bien été modifié');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             // With some errors.
             return $this->view->render('edit_article', [
@@ -67,7 +70,7 @@ class BackController extends Controller
     {
         $this->articleDAO->deleteArticle($articleId);
         $this->session->set('delete_article', 'L\' article a bien été supprimé');
-        header('Location: ../public/index.php');
+        header('Location: ../public/index.php?route=administration');
     }
 
     public function deleteComment($commentId)
