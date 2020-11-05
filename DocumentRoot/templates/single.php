@@ -4,7 +4,7 @@
 <p>En construction</p>
 <div>
     <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
-    <p><?= htmlspecialchars($article->getContent()); ?></p>
+    <p><?= $article->getContent(); ?></p>
     <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
 </div>
 <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>

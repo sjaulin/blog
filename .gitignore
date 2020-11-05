@@ -1,4 +1,4 @@
 .vscode/
 nbproject/
 DocumentRoot/vendor/
-DocumentRoot/vendor/composer/
+DocumentRoot/public/lib/
