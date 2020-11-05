@@ -28,7 +28,7 @@ abstract class Controller
         $this->userDAO = new UserDAO();
         $this->view = new View();
         $this->validation = new Validation();
-        $this->request = new Request(); //TODO Pourquoi ici et dans le constructeur du routeur
+        $this->request = new Request();
         $this->get = $this->request->getGet();
         $this->post = $this->request->getPost();
         $this->session = $this->request->getSession();

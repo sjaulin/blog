@@ -6,21 +6,46 @@
         }
     },
     "require": {
-        "ckeditor/ckeditor": "dev-standard/stable",
+        "oomphinc/composer-installers-extender": "^1.1",
         "twbs/bootstrap": "4.5.3",
-        "components/jquery": "3.5.1"
+        "ckeditor/ckeditor": "dev-standard/stable",
+        "components/jquery": "3.5.1",
+        "ckeditor-plugin/templates": "4.11.0",
+        "ckfinder/ckfinder": "3.5.1.1"
     },
-    "config": {
-        "component-dir": "vendor"
-    },
-    "scripts": {
-        "post-update-cmd": [
-            "rm -rf public/lib/ckeditor",
-            "cp -R vendor/ckeditor/ckeditor public/lib/ckeditor",
-            "rm -rf public/lib/bootstrap",
-            "cp -R vendor/twbs/bootstrap/dist public/lib/bootstrap",
-            "rm -rf public/lib/jquery",
-            "cp -R vendor/components/jquery public/lib/jquery"
-        ]
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "ckeditor-plugin/templates",
+                "version": "4.11.0",
+                "type": "ckeditor-plugin",
+                "dist": {
+                    "url": "https://download.ckeditor.com/templates/releases/templates_4.11.0.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ckfinder/ckfinder",
+                "version": "3.5.1.1",
+                "type": "php-lib",
+                "dist": {
+                    "url": "https://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.5.1.1/ckfinder_php_3.5.1.1.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
+    "extra": {
+        "installer-types": ["library", "component", "ckeditor-plugin", "php-lib"],
+        "installer-paths": {
+            "public/libraries/{$name}/": ["type:library"],
+            "public/components/{$name}/": ["type:component"],
+            "public/libraries/ckeditor/plugins/{$name}": ["type:ckeditor-plugin"],
+            "public/libraries/php/{$name}": ["type:php-lib"]
+        }
     }
 }

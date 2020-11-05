@@ -32,6 +32,7 @@ foreach ($articles as $article) {
                 <?= htmlspecialchars($article->getTitle()); ?>
             </a>
         </h2>
+        <h3><?= htmlspecialchars($article->getTeaser()); ?></h3>
         <p><?= $article->getContent(); // TODO Limit substr...?></p>
         <p><?= htmlspecialchars($article->getAuthor()); ?></p>
         <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>

@@ -4,8 +4,10 @@
 <p>En construction</p>
 <div>
     <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
+    <h3><?= htmlspecialchars($article->getTeaser()); ?></h3>
     <p><?= $article->getContent(); ?></p>
     <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>
+    <p>Mis à jour le : <?= htmlspecialchars($article->getUpdatedDate()); ?></p>
 </div>
 <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
     <br>
@@ -27,7 +29,7 @@
     foreach ($comments as $comment) { ?>
         <h4><?= htmlspecialchars($comment->getPseudo()); ?></h4>
         <p><?= htmlspecialchars($comment->getContent()); ?></p>
-        <p>Dernière modification le <?= htmlspecialchars($comment->getCreatedDate()); ?></p>
+        <p>Créé le <?= htmlspecialchars($comment->getCreatedDate()); ?></p>
         <?php if ($this->session->get('pseudo') && $comment->isFlag()) { ?>
             <p>Ce commentaire a déjà été signalé</p>
         <?php } elseif ($this->session->get('pseudo')) { ?>

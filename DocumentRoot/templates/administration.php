@@ -10,12 +10,13 @@
 <?= $this->session->show('delete_user'); ?>
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
-<table>
+<table class="table">
     <tr>
         <td>Id</td>
         <td>Titre</td>
         <td>Auteur</td>
-        <td>Date</td>
+        <td>Créé le</td>
+        <td>Modifié le</td>
         <td>Actions</td>
     </tr>
     <?php
@@ -25,7 +26,8 @@
             <td><?= htmlspecialchars($article->getId());?></td>
             <td><a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId());?>"><?= htmlspecialchars($article->getTitle());?></a></td>
             <td><?= htmlspecialchars($article->getAuthor());?></td>
-            <td>Créé le : <?= htmlspecialchars($article->getCreatedDate());?></td>
+            <td><?= htmlspecialchars($article->getCreatedDate());?></td>
+            <td><?= htmlspecialchars($article->getUpdatedDate());?></td>
             <td>
                 <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
                 <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
@@ -35,9 +37,9 @@
     }
     ?>
 </table>
-
+<!--
 <h2>Commentaires signalés</h2>
-<table>
+<table class="table">
     <tr>
         <td>Id</td>
         <td>Pseudo</td>
@@ -62,9 +64,10 @@
     }
     ?>
 </table>
+-->
 
 <h2>Utilisateurs</h2>
-<table>
+<table class="table">
     <tr>
         <td>Id</td>
         <td>Pseudo</td>

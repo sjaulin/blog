@@ -13,7 +13,7 @@ class View
 
     public function __construct()
     {
-        $this->request = new Request();//TODO Pourquoi ici et dans le constructeur du controleur et router
+        $this->request = new Request();
         $this->session = $this->request->getSession();
     }
 

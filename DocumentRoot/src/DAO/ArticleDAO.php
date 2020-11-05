@@ -18,6 +18,7 @@ class ArticleDAO extends DAO
         $article = new Article();
         $article->setId($row['id']);
         $article->setTitle($row['title']);
+        $article->setTeaser($row['teaser']);
         $article->setContent($row['content']);
         $article->setAuthor($row['pseudo']);
         $article->setCreatedDate($row['create_date']);
@@ -27,7 +28,7 @@ class ArticleDAO extends DAO
 
     public function getArticles()
     {
-        $sql = 'SELECT article.id, article.title, article.content, user.pseudo, article.create_date, article.update_date FROM article ' .
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, article.create_date, article.update_date FROM article ' .
             'INNER JOIN user ON article.user_id = user.id ORDER BY article.id DESC';
         $result = $this->createQuery($sql);
         $articles = [];
@@ -46,7 +47,7 @@ class ArticleDAO extends DAO
      */
     public function getArticle($articleId)
     {
-        $sql = 'SELECT article.id, article.title, article.content, article.create_date, article.update_date, ' .
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, article.create_date, article.update_date, ' .
             'user.pseudo ' .
             'FROM article INNER JOIN user ON article.user_id = user.id WHERE article.id = ?';
         $result = $this->createQuery($sql, [$articleId]);
@@ -58,15 +59,17 @@ class ArticleDAO extends DAO
     public function addArticle($post, $userId)
     {
         //Permet de récupérer les variables $title, $content et $author
-        $sql = 'INSERT INTO article (title, content, create_date, user_id) VALUES (?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $userId]);
+        $sql = 'INSERT INTO article (title, teaser, content, create_date, update_date user_id) ' .
+            'VALUES (?, ?, ?, NOW(), NOW(), ?)';
+        $this->createQuery($sql, [$post->get('title'), $post->get('teaser'), $post->get('content'), $userId]);
     }
 
     public function editArticle(Parameter $post, $articleId, $userId)
     {
-        $sql = 'UPDATE article SET title=:title, content=:content, user_id=:user_id WHERE id=:articleId';
+        $sql = 'UPDATE article SET title=:title, teaser=:teaser, content=:content, user_id=:user_id, update_date = NOW() WHERE id=:articleId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
+            'teaser' => $post->get('teaser'),
             'content' => $post->get('content'),
             'user_id' => $userId, // TODO Do not update user_id.
             'articleId' => $articleId

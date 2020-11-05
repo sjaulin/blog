@@ -18,6 +18,11 @@ class Article
     /**
      * @var string
      */
+    private $teaser;
+
+    /**
+     * @var string
+     */
     private $content;
 
     /**
@@ -65,6 +70,22 @@ class Article
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeaser()
+    {
+        return $this->teaser;
+    }
+
+    /**
+     * @param string $teaser
+     */
+    public function setTeaser($teaser)
+    {
+        $this->teaser = $teaser;
     }
 
     /**

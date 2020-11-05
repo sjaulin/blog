@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 03, 2020 at 08:28 AM
+-- Generation Time: Nov 05, 2020 at 08:23 AM
 -- Server version: 10.1.47-MariaDB-1~bionic
 -- PHP Version: 7.4.11
 
@@ -30,8 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `title` varchar(45) CHARACTER SET latin1 NOT NULL,
-  `content` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `teaser` text NOT NULL,
+  `content` text NOT NULL,
   `published` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL
@@ -53,7 +54,7 @@ DELIMITER ;
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `title` varchar(45) CHARACTER SET latin1 DEFAULT NULL
+  `title` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -76,8 +77,8 @@ CREATE TABLE `category_article` (
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
-  `pseudo` int(11) NOT NULL,
-  `content` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` varchar(45) DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `flag` tinyint(1) NOT NULL
@@ -91,8 +92,8 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `config` (
   `id` int(11) NOT NULL,
-  `name` varchar(45) CHARACTER SET latin1 NOT NULL,
-  `value` varchar(45) CHARACTER SET latin1 DEFAULT NULL
+  `name` varchar(45) NOT NULL,
+  `value` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -114,13 +115,12 @@ CREATE TABLE `role` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `pseudo` varchar(45) CHARACTER SET latin1 NOT NULL,
-  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `firstname` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `lastname` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `pseudo` varchar(45) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `firstname` varchar(45) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
   `checked` tinyint(4) DEFAULT NULL,
   `enabled` tinyint(4) DEFAULT NULL,
-  `publisher` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -154,9 +154,9 @@ ALTER TABLE `category_article`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`,`article_id`,`pseudo`),
+  ADD PRIMARY KEY (`id`,`article_id`,`user_id`),
   ADD KEY `fk_comment_post_idx` (`article_id`),
-  ADD KEY `fk_comment_user1_idx` (`pseudo`);
+  ADD KEY `fk_comment_user1_idx` (`user_id`);
 
 --
 -- Indexes for table `config`
@@ -240,7 +240,7 @@ ALTER TABLE `category_article`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `fk_comment_post` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`pseudo`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user`

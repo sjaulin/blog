@@ -90,6 +90,7 @@ class BackController extends Controller
             // the form is displayed, set default form values.
             $post->set('id', $article->getId());
             $post->set('title', $article->getTitle());
+            $post->set('teaser', $article->getTeaser());
             $post->set('content', $article->getContent());
             $post->set('author', $article->getAuthor());
 
