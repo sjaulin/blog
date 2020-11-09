@@ -4,8 +4,17 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79f9e7d556b2325418c4725311ca3e9f",
+    "content-hash": "d5477e47414c36d7d2536e282b9eb2c7",
     "packages": [
+        {
+            "name": "ckeditor-plugin/templates",
+            "version": "4.11.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://download.ckeditor.com/templates/releases/templates_4.11.0.zip"
+            },
+            "type": "ckeditor-plugin"
+        },
         {
             "name": "ckeditor/ckeditor",
             "version": "dev-standard/stable",
@@ -47,6 +56,15 @@
                 "wysiwyg"
             ],
             "time": "2020-09-07T12:53:45+00:00"
+        },
+        {
+            "name": "ckfinder/ckfinder",
+            "version": "3.5.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.5.1.1/ckfinder_php_3.5.1.1.zip"
+            },
+            "type": "php-lib"
         },
         {
             "name": "components/jquery",
