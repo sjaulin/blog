@@ -34,8 +34,7 @@ class ArticleDAO extends DAO
 
         if (!empty($year) && !empty($month)) {
             $sql .= 'WHERE date_format(article.create_date, "%Y") = "' . $year . '" AND date_format(article.create_date, "%m") = "' . $month . '" ';
-        }
-        elseif (empty($all)) {
+        } elseif (empty($all)) {
             $sql .= 'WHERE article.top = 1 ';
         }
 

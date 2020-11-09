@@ -10,6 +10,11 @@ class Comment
     private $id;
 
     /**
+     * @var int
+     */
+    private $articleId;
+
+    /**
      * @var string
      */
     private $pseudo;
@@ -38,6 +43,22 @@ class Comment
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getArticleId()
+    {
+        return $this->articleId;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setArticleId($articleId)
+    {
+        $this->articleId = $articleId;
     }
 
     /**

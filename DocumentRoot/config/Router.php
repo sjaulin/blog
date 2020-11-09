@@ -16,7 +16,7 @@ class Router
 
     public function __construct()
     {
-        $this->request = new Request(); //TODO Pourquoi ici et dans le constructeur du controleur et vue
+        $this->request = new Request();
         $this->frontController = new FrontController();
         $this->backController = new BackController();
         $this->errorController = new ErrorController();
@@ -32,11 +32,19 @@ class Router
                 } elseif ($route === 'addArticle') {
                     $this->backController->addArticle($this->request->getPost());
                 } elseif ($route === 'editArticle') {
-                    $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                    $this->backController->editArticle(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
                 } elseif ($route === 'deleteArticle') {
                     $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
                 } elseif ($route === 'addComment') {
-                    $this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                    $this->frontController->addComment(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
+                } elseif ($route === 'publishComment') {
+                    $this->backController->publishComment($this->request->getGet()->get('commentId'));
                 } elseif ($route === 'flagComment') {
                     $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                 } elseif ($route === 'unflagComment') {
@@ -67,7 +75,10 @@ class Router
                     $this->errorController->errorNotFound();
                 }
             } else {
-                $this->frontController->home($this->request->getGet()->get('year'), $this->request->getGet()->get('month'));
+                $this->frontController->home(
+                    $this->request->getGet()->get('year'),
+                    $this->request->getGet()->get('month')
+                );
             }
         } catch (Exception $e) {
             $this->errorController->errorServer();

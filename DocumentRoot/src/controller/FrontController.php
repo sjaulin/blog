@@ -31,7 +31,6 @@ class FrontController extends Controller
         $article = $this->articleDAO->getarticle($articleId);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
         $menu = $this->articleDAO->getArticlesMenu();
-        //TODO Ajouter le titre de la page envoyé au template base ?
         return $this->view->render(
             'single',
             [

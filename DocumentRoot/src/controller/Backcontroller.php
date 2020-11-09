@@ -49,10 +49,12 @@ class BackController extends Controller
     public function adminComment()
     {
         if ($this->checkAdmin()) {
-            $comments = $this->commentDAO->getFlagComments();
+            $unpubliedcomments = $this->commentDAO->getUnpublishedComments();
+            $flagcomments = $this->commentDAO->getFlagComments();
             return $this->view->renderAdmin('admin_comment', [
                 'menu' => self::$menu,
-                'comments' => $comments,
+                'unpubliedcomments' => $unpubliedcomments,
+                'flagcomments' => $flagcomments,
             ]);
         }
     }
@@ -136,11 +138,18 @@ class BackController extends Controller
         }
     }
 
+    public function publishComment($commentId)
+    {
+        $this->commentDAO->publishComment($commentId);
+        $this->session->set('alert_comment', 'Le commentaire a bien été publié');
+        header('Location: ../public/index.php?route=admin_comment');
+    }
+
     public function unflagComment($commentId)
     {
         if ($this->checkAdmin()) {
             $this->commentDAO->unflagComment($commentId);
-            $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
+            $this->session->set('alert_comment', 'Le commentaire a bien été désignalé');
             header('Location: ../public/index.php?route=admin_comment');
         }
     }
@@ -149,7 +158,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+            $this->session->set('alert_comment', 'Le commentaire a bien été supprimé');
             header('Location: ../public/index.php?route=admin_comment');
         }
     }
