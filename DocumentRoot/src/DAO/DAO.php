@@ -44,6 +44,8 @@ abstract class DAO
             $result->execute($parameters);
             return $result;
         }
+        $this->checkConnection()->query('SET lc_time_names="fr_FR"');
+        $this->checkConnection()->query('SET NAMES utf8');
         $result = $this->checkConnection()->query($sql);
         return $result;
     }

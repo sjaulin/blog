@@ -45,15 +45,15 @@ class Comment
      */
     public function getPseudo()
     {
-        return $this->author;
+        return $this->pseudo;
     }
 
     /**
      * @param int $pseudo
      */
-    public function setPseudo($author)
+    public function setPseudo($pseudo)
     {
-        $this->author = $author;
+        $this->pseudo = $pseudo;
     }
 
     /**
@@ -103,5 +103,20 @@ class Comment
     {
         $this->flag = $flag;
     }
-        
+
+    /**
+     * @return bool
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
 }

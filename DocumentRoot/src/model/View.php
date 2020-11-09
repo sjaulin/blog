@@ -19,10 +19,36 @@ class View
 
     public function render($template, $data = [])
     {
+        // template menu
+        $this->menufile = '../templates/menu_front.php';
+        $menucontent = $this->renderFile($this->menufile, $data);
+
+        // template page
         $this->file = '../templates/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
+
         $view = $this->renderFile('../templates/base.php', [
             'title' => $this->title,
+            'menucontent' => $menucontent,
+            'content' => $content,
+            'session' => $this->session,
+        ]);
+        echo $view;
+    }
+
+    public function renderAdmin($template, $data = [])
+    {
+        // template menu
+        $this->menufile = '../templates/menu_back.php';
+        $menucontent = $this->renderFile($this->menufile, $data);
+
+        // template page
+        $this->file = '../templates/'.$template.'.php';
+        $content  = $this->renderFile($this->file, $data);
+
+        $view = $this->renderFile('../templates/base.php', [
+            'title' => $this->title,
+            'menucontent' => $menucontent,
             'content' => $content,
             'session' => $this->session,
         ]);

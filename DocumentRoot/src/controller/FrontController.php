@@ -7,13 +7,15 @@ use App\config\Parameter;
 class FrontController extends Controller
 {
 
-    public function home()
+    public function home($year = null, $month = null)
     {
-        $articles = $this->articleDAO->getArticles();
+        $articles = $this->articleDAO->getArticles($year, $month, null);
+        $menu = $this->articleDAO->getArticlesMenu();
         return $this->view->render(
             'home',
             [
-                'articles' => $articles,
+                'menu' => $menu,
+                'articles' => $articles
             ],
         );
     }
@@ -28,10 +30,12 @@ class FrontController extends Controller
     {
         $article = $this->articleDAO->getarticle($articleId);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+        $menu = $this->articleDAO->getArticlesMenu();
         //TODO Ajouter le titre de la page envoyé au template base ?
         return $this->view->render(
             'single',
             [
+                'menu' => $menu,
                 'article' => $article,
                 'comments' => $comments,
             ],

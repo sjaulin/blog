@@ -23,13 +23,23 @@ class ArticleDAO extends DAO
         $article->setAuthor($row['pseudo']);
         $article->setCreatedDate($row['create_date']);
         $article->setUpdatedDate($row['update_date']);
+        $article->setTop($row['top']);
         return $article;
     }
 
-    public function getArticles()
+    public function getArticles($year = null, $month = null, $all = null)
     {
-        $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, article.create_date, article.update_date FROM article ' .
-            'INNER JOIN user ON article.user_id = user.id ORDER BY article.id DESC';
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, article.create_date, article.update_date, article.top FROM article ' .
+            'INNER JOIN user ON article.user_id = user.id ';
+
+        if (!empty($year) && !empty($month)) {
+            $sql .= 'WHERE date_format(article.create_date, "%Y") = "' . $year . '" AND date_format(article.create_date, "%m") = "' . $month . '" ';
+        }
+        elseif (empty($all)) {
+            $sql .= 'WHERE article.top = 1 ';
+        }
+
+        $sql .= 'ORDER BY article.id DESC';
         $result = $this->createQuery($sql);
         $articles = [];
         foreach ($result as $row) {
@@ -47,7 +57,7 @@ class ArticleDAO extends DAO
      */
     public function getArticle($articleId)
     {
-        $sql = 'SELECT article.id, article.title, article.teaser, article.content, article.create_date, article.update_date, ' .
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, article.create_date, article.update_date, article.top, ' .
             'user.pseudo ' .
             'FROM article INNER JOIN user ON article.user_id = user.id WHERE article.id = ?';
         $result = $this->createQuery($sql, [$articleId]);
@@ -59,19 +69,19 @@ class ArticleDAO extends DAO
     public function addArticle($post, $userId)
     {
         //Permet de récupérer les variables $title, $content et $author
-        $sql = 'INSERT INTO article (title, teaser, content, create_date, update_date user_id) ' .
-            'VALUES (?, ?, ?, NOW(), NOW(), ?)';
+        $sql = 'INSERT INTO article (title, teaser, content, create_date, update_date, user_id) ' .
+            ' VALUES (?, ?, ?, NOW(), NOW(), ?)';
         $this->createQuery($sql, [$post->get('title'), $post->get('teaser'), $post->get('content'), $userId]);
     }
 
     public function editArticle(Parameter $post, $articleId, $userId)
     {
-        $sql = 'UPDATE article SET title=:title, teaser=:teaser, content=:content, user_id=:user_id, update_date = NOW() WHERE id=:articleId';
+        $sql = 'UPDATE article SET title=:title, teaser=:teaser, content=:content, top=:top, update_date = NOW() WHERE id=:articleId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'teaser' => $post->get('teaser'),
             'content' => $post->get('content'),
-            'user_id' => $userId, // TODO Do not update user_id.
+            'top' => !empty($post->get('top')) ? 1 : 0,
             'articleId' => $articleId
         ]);
     }
@@ -81,5 +91,21 @@ class ArticleDAO extends DAO
         // no comment deletion here because there is a mysql trigger.
         $sql = 'DELETE FROM article WHERE id = ?';
         $this->createQuery($sql, [$articleId]);
+    }
+
+    public function getArticlesMenu()
+    {
+        // SELECT MONTHNAME(create_date) as month, YEAR(create_date) as year, count(id) as nb FROM `article`GROUP BY MONTH(create_date), YEAR(create_date) DESC
+        
+        $sql = 'select 
+        date_format(create_date, "%M %Y") as title, 
+        date_format(create_date, "%m") as month, 
+        date_format(create_date, "%Y") as year, 
+        count(id) as nb from article
+        GROUP BY MONTH(create_date), YEAR(create_date) DESC';
+        $result = $this->createQuery($sql);
+        $menu = $result->fetchAll();
+        $result->closeCursor();
+        return $menu;
     }
 }

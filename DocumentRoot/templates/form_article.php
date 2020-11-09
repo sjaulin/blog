@@ -23,5 +23,11 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
 </div>
 
+<div class="form-group">
+    <label for="top">Page d'accueil ?</label><br>
+    <input type="checkbox" name="top" <?= isset($post) && !empty($post->get('top')) ? 'checked': ''; ?>> Oui
+    <?= isset($errors['top']) ? $errors['top'] : ''; ?>
+</div>
+
     <input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
 </form>

@@ -10,21 +10,22 @@
 </head>
 
 <body>
-    <div class="menu">
-        <?= $menu ?>
+
+    <div id="menu">
+        <?= $menucontent ?>
     </div>
+
     <div id="content">
         <?= $content ?>
     </div>
 
     <script>
-    CKEDITOR.replace( 'ckeditor',
-    {
-        filebrowserBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-    });
+        CKEDITOR.replace('ckeditor', {
+            filebrowserBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html?type=Images',
+            filebrowserUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+        });
     </script>
 </body>
 

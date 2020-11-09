@@ -41,6 +41,11 @@ class Article
     private $updatedDate;
 
     /**
+     * @var int
+     */
+    private $top;
+
+    /**
      * @return int
      */
     public function getId()
@@ -150,5 +155,21 @@ class Article
     public function setUpdatedDate($updatedDate)
     {
         $this->updatedDate = $updatedDate;
+    }
+
+    /**
+     * @return int $top
+     */
+    public function getTop()
+    {
+        return $this->top;
+    }
+
+    /**
+     * @param int $top
+     */
+    public function setTop($top)
+    {
+        $this->top = $top;
     }
 }

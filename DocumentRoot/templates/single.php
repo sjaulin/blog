@@ -4,6 +4,7 @@
 <p>En construction</p>
 <div>
     <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
+    <p>Auteur : <?= htmlspecialchars($article->getAuthor()); ?></p>
     <h3><?= htmlspecialchars($article->getTeaser()); ?></h3>
     <p><?= $article->getContent(); ?></p>
     <p>Créé le : <?= htmlspecialchars($article->getCreatedDate()); ?></p>

@@ -1,11 +1,17 @@
 <?php
-// TODO Move to : UserController, ArticleController, CommentController ?
+// TODO Découper en UserController, ArticleController, CommentController ?
 namespace App\src\controller;
 
 use App\config\Parameter;
 
 class BackController extends Controller
 {
+    public static $menu = array(
+        'admin_article' => array('title' => 'Administrer les articles'),
+        'admin_comment' => array('title' => 'Administrer les commentaires'),
+        'admin_user' => array('title' => 'Administrer les utilisateurs')
+    );
+
     // TODO move to router ?
     private function checkLoggedIn()
     {
@@ -29,20 +35,39 @@ class BackController extends Controller
         }
     }
 
-    public function administration()
+    public function adminArticle()
     {
         if ($this->checkAdmin()) {
-            $articles = $this->articleDAO->getArticles();
-            $comments = $this->commentDAO->getFlagComments();
-            $users = $this->userDAO->getUsers();
-            return $this->view->render('administration', [
+            $articles = $this->articleDAO->getArticles(null, null, 1);
+            return $this->view->renderAdmin('admin_article', [
+                'menu' => self::$menu,
                 'articles' => $articles,
-                'comments' => $comments,
-                'users' => $users,
             ]);
         }
     }
 
+    public function adminComment()
+    {
+        if ($this->checkAdmin()) {
+            $comments = $this->commentDAO->getFlagComments();
+            return $this->view->renderAdmin('admin_comment', [
+                'menu' => self::$menu,
+                'comments' => $comments,
+            ]);
+        }
+    }
+
+    public function adminUser()
+    {
+        if ($this->checkAdmin()) {
+            $users = $this->userDAO->getUsers();
+            return $this->view->renderAdmin('admin_user', [
+                'menu' => self::$menu,
+                'users' => $users,
+            ]);
+        }
+    }
+    
     public function addArticle(Parameter $post)
     {
         if ($this->checkAdmin()) {
@@ -53,17 +78,17 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->articleDAO->addArticle($post, $this->session->get('id'));
                     $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                    header('Location: ../public/index.php?route=administration');
+                    header('Location: ../public/index.php?route=admin_article');
                 }
                 // With some errors.
-                return $this->view->render('add_article', [
+                return $this->view->renderAdmin('add_article', [
                     'post' => $post,
                     'errors' => $errors
                 ]);
             }
 
             // the form is displayed.
-            return $this->view->render('add_article');
+            return $this->view->renderAdmin('add_article');
         }
     }
 
@@ -78,10 +103,10 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                     $this->session->set('edit_article', 'L\' article a bien été modifié');
-                    header('Location: ../public/index.php?route=administration');
+                    header('Location: ../public/index.php?route=admin_article');
                 }
                 // With some errors.
-                return $this->view->render('edit_article', [
+                return $this->view->renderAdmin('edit_article', [
                     'post' => $post,
                     'errors' => $errors
                 ]);
@@ -93,8 +118,10 @@ class BackController extends Controller
             $post->set('teaser', $article->getTeaser());
             $post->set('content', $article->getContent());
             $post->set('author', $article->getAuthor());
+            $post->set('top', $article->getTop());
 
-            return $this->view->render('edit_article', [
+            return $this->view->renderAdmin('edit_article', [
+                'menu' => self::$menu,
                 'post' => $post
             ]);
         }
@@ -105,7 +132,7 @@ class BackController extends Controller
         if ($this->checkAdmin()) {
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set('delete_article', 'L\' article a bien été supprimé');
-            header('Location: ../public/index.php?route=administration');
+            header('Location: ../public/index.php?route=admin_article');
         }
     }
 
@@ -114,7 +141,7 @@ class BackController extends Controller
         if ($this->checkAdmin()) {
             $this->commentDAO->unflagComment($commentId);
             $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
-            header('Location: ../public/index.php?route=administration');
+            header('Location: ../public/index.php?route=admin_comment');
         }
     }
 
@@ -123,7 +150,7 @@ class BackController extends Controller
         if ($this->checkAdmin()) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
-            header('Location: ../public/index.php?route=administration');
+            header('Location: ../public/index.php?route=admin_comment');
         }
     }
 
@@ -172,7 +199,7 @@ class BackController extends Controller
         if ($this->checkAdmin()) {
             $this->userDAO->deleteUser($userId);
             $this->session->set('delete_user', 'L\'utilisateur a bien été supprimé');
-            header('Location: ../public/index.php?route=administration');
+            header('Location: ../public/index.php?route=admin_user');
         }
     }
 }

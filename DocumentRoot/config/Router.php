@@ -57,13 +57,17 @@ class Router
                     $this->backController->deleteAccount();
                 } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
-                } elseif ($route === 'administration') {
-                    $this->backController->administration();
+                } elseif ($route === 'admin_article') {
+                    $this->backController->adminArticle();
+                } elseif ($route === 'admin_comment') {
+                    $this->backController->adminComment();
+                } elseif ($route === 'admin_user') {
+                    $this->backController->adminUser();
                 } else {
                     $this->errorController->errorNotFound();
                 }
             } else {
-                $this->frontController->home();
+                $this->frontController->home($this->request->getGet()->get('year'), $this->request->getGet()->get('month'));
             }
         } catch (Exception $e) {
             $this->errorController->errorServer();
