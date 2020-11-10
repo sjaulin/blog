@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title><?= $title ?></title>
-    <script src="libraries/ckeditor/ckeditor.js"></script>
-    <link rel="stylesheet" href="libraries/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <script src="/public/libraries/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/public/libraries/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 
 <body>

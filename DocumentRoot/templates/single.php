@@ -1,5 +1,3 @@
-<?php $this->title = "Article"; // TODO : déplacer dans FrontController 
-?>
 <h1>Mon blog</h1>
 <p>En construction</p>
 <div>
@@ -13,12 +11,12 @@
 <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
     <br>
     <div class="actions">
-        <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-        <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+        <a href="/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
+        <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
     </div>
 <?php } ?>
 <br>
-<a href="../public/index.php">Retour à l'accueil</a>
+<a href="/index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px">
     <?php if ($this->session->get('pseudo')) { ?>
@@ -34,11 +32,11 @@
         <?php if ($this->session->get('pseudo') && $comment->isFlag()) { ?>
             <p>Ce commentaire a déjà été signalé</p>
         <?php } elseif ($this->session->get('pseudo')) { ?>
-            <p><a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
+            <p><a href="/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
         <?php } ?>
 
         <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
-            <p><a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+            <p><a href="/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
         <?php } ?>
         <br>
     <?php } ?>

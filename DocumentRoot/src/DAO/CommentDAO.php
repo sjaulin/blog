@@ -23,7 +23,7 @@ class CommentDAO extends DAO
 
     public function getCommentsFromArticle($articleId)
     {
-        $sql = 'SELECT comment.id, comment.content, user.pseudo, comment.create_date, comment.flag FROM comment 
+        $sql = 'SELECT comment.id, comment.content, user.pseudo, comment.create_date, comment.article_id, comment.flag FROM comment 
         INNER JOIN user ON user.id = comment.user_id WHERE article_id = ? AND published = 1 ORDER BY create_date DESC';
         $result = $this->createQuery($sql, [$articleId]);
         $comments = [];

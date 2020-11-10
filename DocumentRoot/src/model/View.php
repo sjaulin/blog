@@ -20,14 +20,14 @@ class View
     public function render($template, $data = [])
     {
         // template menu
-        $this->menufile = '../templates/menu_front.php';
+        $this->menufile = './templates/menu_front.php';
         $menucontent = $this->renderFile($this->menufile, $data);
 
         // template page
-        $this->file = '../templates/'.$template.'.php';
+        $this->file = './templates/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
 
-        $view = $this->renderFile('../templates/base.php', [
+        $view = $this->renderFile('./templates/base.php', [
             'title' => $this->title,
             'menucontent' => $menucontent,
             'content' => $content,
@@ -39,14 +39,14 @@ class View
     public function renderAdmin($template, $data = [])
     {
         // template menu
-        $this->menufile = '../templates/menu_back.php';
+        $this->menufile = './templates/menu_back.php';
         $menucontent = $this->renderFile($this->menufile, $data);
 
         // template page
-        $this->file = '../templates/'.$template.'.php';
+        $this->file = './templates/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
 
-        $view = $this->renderFile('../templates/base.php', [
+        $view = $this->renderFile('./templates/base.php', [
             'title' => $this->title,
             'menucontent' => $menucontent,
             'content' => $content,

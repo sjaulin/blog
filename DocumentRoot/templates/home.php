@@ -13,14 +13,14 @@
 <?= $this->session->show('delete_account'); ?>
 <?php
 if ($this->session->get('pseudo')) { ?>
-    <a href="../public/index.php?route=logout">Déconnexion</a>
-    <a href="../public/index.php?route=profile">Profil</a>
+    <a href="/index.php?route=logout">Déconnexion</a>
+    <a href="/index.php?route=profile">Profil</a>
     <?php if ($this->session->get('role') === 'admin') { ?>
-        <a href="../public/index.php?route=admin_article">Administration</a>
+        <a href="/index.php?route=admin_article">Administration</a>
     <?php } ?>
 <?php } else { ?>
-    <a href="../public/index.php?route=register">Inscription</a>
-    <a href="../public/index.php?route=login">Connexion</a>
+    <a href="/index.php?route=register">Inscription</a>
+    <a href="/index.php?route=login">Connexion</a>
 <?php } ?>
 
 <?php
@@ -28,7 +28,7 @@ foreach ($articles as $article) {
     ?>
     <div>
         <h2>
-            <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
+            <a href="/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
                 <?= htmlspecialchars($article->getTitle()); ?>
             </a>
         </h2>
