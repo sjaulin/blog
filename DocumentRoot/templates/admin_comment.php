@@ -1,4 +1,4 @@
-<?= $this->session->show('alert_comment'); ?>
+<?= $this->session->show('alert'); ?>
 <h2>Commentaires</h2>
 
 <h3>Commentaires à valider</h3>

@@ -16,7 +16,7 @@ class BackController extends Controller
     private function checkLoggedIn()
     {
         if (!$this->session->get('pseudo')) {
-            $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
+            $this->session->set('alert', 'Vous devez vous connecter pour accéder à cette page');
             header('Location: index.php?route=login');
         } else {
             return true;
@@ -28,7 +28,7 @@ class BackController extends Controller
     {
         $this->checkLoggedIn();
         if (!($this->session->get('role') === 'admin')) {
-            $this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
+            $this->session->set('alert', 'Vous n\'avez pas le droit d\'accéder à cette page');
             header('Location: index.php?route=profile');
         } else {
             return true;
@@ -79,7 +79,7 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Article');
                 if (!$errors) {
                     $this->articleDAO->addArticle($post, $this->session->get('id'));
-                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                    $this->session->set('alert', 'Le nouvel article a bien été ajouté');
                     header('Location: index.php?route=admin_article');
                 }
                 // With some errors.
@@ -104,7 +104,7 @@ class BackController extends Controller
                 // Without error.
                 if (!$errors) {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
-                    $this->session->set('edit_article', 'L\' article a bien été modifié');
+                    $this->session->set('alert', 'L\' article a bien été modifié');
                     header('Location: index.php?route=admin_article');
                 }
                 // With some errors.
@@ -133,7 +133,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->articleDAO->deleteArticle($articleId);
-            $this->session->set('delete_article', 'L\' article a bien été supprimé');
+            $this->session->set('alert', 'L\' article a bien été supprimé');
             header('Location: index.php?route=admin_article');
         }
     }
@@ -141,7 +141,7 @@ class BackController extends Controller
     public function publishComment($commentId)
     {
         $this->commentDAO->publishComment($commentId);
-        $this->session->set('alert_comment', 'Le commentaire a bien été publié');
+        $this->session->set('alert', 'Le commentaire a bien été publié');
         header('Location: index.php?route=admin_comment');
     }
 
@@ -149,7 +149,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->commentDAO->unflagComment($commentId);
-            $this->session->set('alert_comment', 'Le commentaire a bien été désignalé');
+            $this->session->set('alert', 'Le commentaire a bien été désignalé');
             header('Location: index.php?route=admin_comment');
         }
     }
@@ -158,7 +158,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('alert_comment', 'Le commentaire a bien été supprimé');
+            $this->session->set('alert', 'Le commentaire a bien été supprimé');
             header('Location: index.php?route=admin_comment');
         }
     }
@@ -175,7 +175,7 @@ class BackController extends Controller
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Le mot de passe a été mis à jour');
+                $this->session->set('alert', 'Le mot de passe a été mis à jour');
                 header('Location: index.php?route=profile');
             }
             return $this->view->render('update_password');
@@ -187,7 +187,7 @@ class BackController extends Controller
         if ($this->checkLoggedIn()) {
             $this->session->stop();
             $this->session->start();
-            $this->session->set('logout', 'À bientôt');
+            $this->session->set('alert', 'À bientôt');
             header('Location: index.php');
         }
     }
@@ -198,7 +198,7 @@ class BackController extends Controller
             $this->userDAO->deleteAccount($this->session->get('pseudo'));
             $this->session->stop();
             $this->session->start();
-            $this->session->set('delete_account', 'Votre compte a bien été supprimé');
+            $this->session->set('alert', 'Votre compte a bien été supprimé');
             header('Location: index.php');
         }
     }
@@ -207,7 +207,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->userDAO->deleteUser($userId);
-            $this->session->set('delete_user', 'L\'utilisateur a bien été supprimé');
+            $this->session->set('alert', 'L\'utilisateur a bien été supprimé');
             header('Location: index.php?route=admin_user');
         }
     }

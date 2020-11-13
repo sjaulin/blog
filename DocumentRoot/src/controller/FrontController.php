@@ -45,7 +45,7 @@ class FrontController extends Controller
     {
         if ($post->get('submit')) {
             $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
-            $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
+            $this->session->set('alert', 'Le nouveau commentaire a bien été ajouté');
             header('Location: index.php?route=article&articleId='.$articleId);
         }
     }
@@ -53,7 +53,7 @@ class FrontController extends Controller
     public function flagComment($commentId)
     {
         $this->commentDAO->flagComment($commentId);
-        $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
+        $this->session->set('alert', 'Le commentaire a bien été signalé');
         header('Location: index.php');
     }
 
@@ -66,7 +66,7 @@ class FrontController extends Controller
             }
             if (!$errors) {
                 $this->userDAO->register($post);
-                $this->session->set('register', 'Votre inscription a bien été effectuée');
+                $this->session->set('alert', 'Votre inscription a bien été effectuée');
                 header('Location: index.php');
             }
             return $this->view->render('register', [
@@ -82,18 +82,47 @@ class FrontController extends Controller
         if ($post->get('submit')) {
             $result = $this->userDAO->login($post);
             if ($result && $result['isPasswordValid']) {
-                $this->session->set('login', 'Content de vous revoir');
+                $this->session->set('alert', 'Content de vous revoir');
                 $this->session->set('id', $result['result']['id']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('pseudo', $post->get('pseudo'));
                 header('Location: index.php');
             } else {
-                $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
+                $this->session->set('alert', 'Le pseudo ou le mot de passe sont incorrects');
                 return $this->view->render('login', [
                     'post'=> $post
                 ]);
             }
         }
         return $this->view->render('login');
+    }
+
+    public function contact(Parameter $post)
+    {
+        // The form is submitted.
+        if ($post->get('submit')) {
+            $errors = $this->validation->validate($post, 'contact');
+            // Without error.
+            if (!$errors) {
+                // Send mail.
+                $this->mailer->sendmail(
+                    $post->get('mail'),
+                    $post->get('name'),
+                    CONTACT_TO_MAIL,
+                    CONTACT_TO_NAME,
+                    'Message posté depuis le blog',
+                    $post->get('message')
+                );
+                $this->session->set('alert', 'Votre message a bien été envoyé !');
+                header('Location: index.php');
+            }
+            // With some errors.
+            return $this->view->render('contact', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
+        }
+        // the form is displayed, set default form values.
+        return $this->view->render('contact');
     }
 }

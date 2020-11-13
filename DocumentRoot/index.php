@@ -1,5 +1,5 @@
 <?php
-require './config/dev.php';
+require './config/env/dev.php';
 require './vendor/autoload.php';
 session_start();
 

@@ -1,9 +1,4 @@
-<?= $this->session->show('add_article'); ?>
-<?= $this->session->show('edit_article'); ?>
-<?= $this->session->show('delete_article'); ?>
-<?= $this->session->show('unflag_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
-<?= $this->session->show('delete_user'); ?>
+<?= $this->session->show('alert'); ?>
 <h2>Articles</h2>
 <a href="/index.php?route=addArticle">Nouvel article</a>
 <table class="table">

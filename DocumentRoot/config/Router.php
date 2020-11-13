@@ -71,6 +71,8 @@ class Router
                     $this->backController->adminComment();
                 } elseif ($route === 'admin_user') {
                     $this->backController->adminUser();
+                } elseif ($route === 'contact') {
+                    $this->frontController->contact($this->request->getPost());
                 } else {
                     $this->errorController->errorNotFound();
                 }

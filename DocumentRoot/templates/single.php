@@ -1,5 +1,6 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
+<?= $this->session->show('alert'); ?>
 <div>
     <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
     <p>Auteur : <?= htmlspecialchars($article->getAuthor()); ?></p>

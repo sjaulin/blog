@@ -7,25 +7,10 @@
     },
     "require": {
         "oomphinc/composer-installers-extender": "^1.1",
-        "twbs/bootstrap": "4.5.3",
-        "ckeditor/ckeditor": "dev-standard/stable",
-        "components/jquery": "3.5.1",
-        "ckeditor-plugin/templates": "4.11.0",
-        "ckfinder/ckfinder": "3.5.1.1"
+        "ckfinder/ckfinder": "3.5.1.1",
+        "phpmailer/phpmailer": "~6.1"
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "ckeditor-plugin/templates",
-                "version": "4.11.0",
-                "type": "ckeditor-plugin",
-                "dist": {
-                    "url": "https://download.ckeditor.com/templates/releases/templates_4.11.0.zip",
-                    "type": "zip"
-                }
-            }
-        },
         {
             "type": "package",
             "package": {
@@ -40,16 +25,16 @@
         }
     ],
     "extra": {
-        "installer-types": ["library", "component", "ckeditor-plugin", "php-lib"],
+        "installer-types": ["php-lib"],
         "installer-paths": {
-            "public/libraries/{$name}/": ["type:library"],
-            "public/components/{$name}/": ["type:component"],
-            "public/libraries/ckeditor/plugins/{$name}": ["type:ckeditor-plugin"],
             "public/libraries/php/{$name}": ["type:php-lib"]
         }
     },
     "scripts": {
         "post-update-cmd": [
+            "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
+        ],
+        "post-install-cmd": [
             "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
         ]
     }

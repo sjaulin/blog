@@ -7,6 +7,7 @@ use App\src\constraint\Validation;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\DAO\UserDAO;
+use App\src\model\Mailer;
 use App\src\model\View;
 
 abstract class Controller
@@ -15,6 +16,7 @@ abstract class Controller
     protected $commentDAO;
     protected $userDAO;
     protected $view;
+    protected $mailer;
     private $request;
     protected $get;
     protected $post;
@@ -27,6 +29,7 @@ abstract class Controller
         $this->commentDAO = new CommentDAO();
         $this->userDAO = new UserDAO();
         $this->view = new View();
+        $this->mailer = new Mailer();
         $this->validation = new Validation();
         $this->request = new Request();
         $this->get = $this->request->getGet();

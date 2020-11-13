@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title><?= $title ?></title>
-    <script src="/public/libraries/ckeditor/ckeditor.js"></script>
-    <link rel="stylesheet" href="/public/libraries/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
 

@@ -1,4 +1,4 @@
-<?= $this->session->show('delete_user'); ?>
+<?= $this->session->show('alert'); ?>
 
 <h2>Utilisateurs</h2>
 <table class="table">

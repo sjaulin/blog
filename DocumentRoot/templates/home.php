@@ -4,13 +4,7 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 <?php // TODO Déplacer dans base.php (pas réussi pb de double chargement de base.php) ?>
-<?= $this->session->show('add_comment'); ?>
-<?= $this->session->show('flag_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
-<?= $this->session->show('register'); ?>
-<?= $this->session->show('login'); ?>
-<?= $this->session->show('logout'); ?>
-<?= $this->session->show('delete_account'); ?>
+<?= $this->session->show('alert'); ?>
 <?php
 if ($this->session->get('pseudo')) { ?>
     <a href="/index.php?route=logout">Déconnexion</a>
