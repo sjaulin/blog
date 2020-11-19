@@ -58,7 +58,7 @@
             <div class="col-md-9 border">
                 <?= $content ?>
             </div>
-            <div class="col-md-3 py-5">
+            <div class="col-md-3 menuside">
                 <?= $menucontent ?>
 
                 <h4 class="font-italic">Compte</h4>
