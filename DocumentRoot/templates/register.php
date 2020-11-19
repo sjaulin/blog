@@ -1,7 +1,5 @@
-<?php $this->title = "Inscription"; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
-<div>
+<div class="py-5 text-center">
+<h2>Inscription</h2>
     <form method="post" action="/index.php?route=register">
         <label for="pseudo">Pseudo</label><br>
         <input type="text" id="pseudo" name="pseudo" value="<?= isset($post) ? htmlspecialchars($post->get('pseudo')): ''; ?>"><br>
@@ -11,5 +9,4 @@
         <?= isset($errors['password']) ? $errors['password'] : ''; ?>
         <input type="submit" value="Inscription" id="submit" name="submit">
     </form>
-    <a href="/index.php">Retour à l'accueil</a>
 </div>

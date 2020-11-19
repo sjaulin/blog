@@ -29,7 +29,7 @@ class ArticleDAO extends DAO
 
     public function getArticles($year = null, $month = null, $all = null)
     {
-        $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, article.create_date, article.update_date, article.top FROM article ' .
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, date_format(article.create_date, "%d %M %Y à %H:%i:%s") create_date, article.update_date, article.top FROM article ' .
             'INNER JOIN user ON article.user_id = user.id ';
 
         if (!empty($year) && !empty($month)) {
@@ -56,7 +56,7 @@ class ArticleDAO extends DAO
      */
     public function getArticle($articleId)
     {
-        $sql = 'SELECT article.id, article.title, article.teaser, article.content, article.create_date, article.update_date, article.top, ' .
+        $sql = 'SELECT article.id, article.title, article.teaser, article.content, date_format(article.create_date, "%d %M %Y à %H:%i:%s") create_date, date_format(article.update_date, "%d %M %Y à %H:%i:%s") update_date, article.top, ' .
             'user.pseudo ' .
             'FROM article INNER JOIN user ON article.user_id = user.id WHERE article.id = ?';
         $result = $this->createQuery($sql, [$articleId]);
@@ -94,8 +94,6 @@ class ArticleDAO extends DAO
 
     public function getArticlesMenu()
     {
-        // SELECT MONTHNAME(create_date) as month, YEAR(create_date) as year, count(id) as nb FROM `article`GROUP BY MONTH(create_date), YEAR(create_date) DESC
-        
         $sql = 'select 
         date_format(create_date, "%M %Y") as title, 
         date_format(create_date, "%m") as month, 

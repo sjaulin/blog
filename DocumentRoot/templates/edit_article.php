@@ -1,7 +1,12 @@
-<?php $this->title = "Modification de l'article"; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
+<h2>Modifier l'article</h2>
 <div>
     <?php include('form_article.php');?>
-    <a href="/index.php">Retour à l'accueil</a>
 </div>
+<script>
+        CKEDITOR.replace('ckeditor', {
+            filebrowserBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/public/libraries/php/ckfinder/ckfinder.html?type=Images',
+            filebrowserUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/public/libraries/php/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+        });
+    </script>

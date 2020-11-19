@@ -1,5 +1,5 @@
 <?= $this->session->show('alert'); ?>
-<h2>Commentaires</h2>
+<h2>Administration des Commentaires</h2>
 
 <h3>Commentaires à valider</h3>
 <table class="table">

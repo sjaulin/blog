@@ -1,13 +1,12 @@
 <?= $this->session->show('alert'); ?>
 
-<h2>Utilisateurs</h2>
+<h2>Administration des utilisateurs</h2>
 <table class="table">
     <tr>
         <td>Id</td>
         <td>Pseudo</td>
         <td>Date</td>
         <td>Rôle</td>
-        <td>Actions</td>
     </tr>
     <?php
     foreach ($users as $user) {
@@ -17,7 +16,6 @@
             <td><?= htmlspecialchars($user->getPseudo());?></td>
             <td>Créé le : <?= htmlspecialchars($user->getCreatedDate());?></td>
             <td><?= htmlspecialchars($user->getRole());?></td>
-            <td>En construction</td>
         </tr>
         <?php
     }

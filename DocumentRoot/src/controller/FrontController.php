@@ -15,7 +15,8 @@ class FrontController extends Controller
             'home',
             [
                 'menu' => $menu,
-                'articles' => $articles
+                'articles' => $articles,
+                'top' => empty($year) && empty($month) ? 1 : 0,
             ],
         );
     }
