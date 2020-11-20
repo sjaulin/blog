@@ -1,5 +1,4 @@
 <?php
-// TODO Découper en UserController, ArticleController, CommentController ?
 namespace App\src\controller;
 
 use App\config\Parameter;
@@ -12,7 +11,6 @@ class BackController extends Controller
         'admin_user' => array('title' => 'Administrer les utilisateurs')
     );
 
-    // TODO move to router ?
     private function checkLoggedIn()
     {
         if (!$this->session->get('pseudo')) {
@@ -23,7 +21,6 @@ class BackController extends Controller
         }
     }
 
-    // TODO move to router ?
     private function checkAdmin()
     {
         $this->checkLoggedIn();

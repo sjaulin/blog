@@ -66,7 +66,7 @@ class Article
      */
     public function getTitle()
     {
-        return $this->title;
+        return htmlspecialchars($this->title);
     }
 
     /**
@@ -82,7 +82,7 @@ class Article
      */
     public function getTeaser()
     {
-        return $this->teaser;
+        return htmlspecialchars($this->teaser);
     }
 
     /**
@@ -98,7 +98,7 @@ class Article
      */
     public function getContent()
     {
-        return $this->content;
+        return htmlspecialchars($this->content);
     }
 
     /**

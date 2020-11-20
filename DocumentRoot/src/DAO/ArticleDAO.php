@@ -11,8 +11,6 @@ use App\src\model\Article;
 
 class ArticleDAO extends DAO
 {
-    // Convert database cols to object properties. (hydratation)
-    //TODO : https://openclassrooms.com/fr/courses/1665806-programmez-en-oriente-objet-en-php/1666289-manipulation-de-donnees-stockees#/id/r-1669539
     private function buildObject($row)
     {
         $article = new Article();

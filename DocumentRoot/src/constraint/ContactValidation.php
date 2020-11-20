@@ -24,7 +24,13 @@ class ContactValidation extends Validation
 
     private function checkField($name, $value)
     {
-        if ($name === 'message') {
+        if ($name === 'name') {
+            $error = $this->checkName($name, $value);
+            $this->addError($name, $error);
+        } elseif ($name === 'mail') {
+            $error = $this->checkMail($name, $value);
+            $this->addError($name, $error);
+        } elseif ($name === 'message') {
             $error = $this->checkMessage($name, $value);
             $this->addError($name, $error);
         }
@@ -39,16 +45,42 @@ class ContactValidation extends Validation
         }
     }
 
+    private function checkName($name, $value)
+    {
+        if ($this->constraint->notBlank($name, $value)) {
+            return $this->constraint->notBlank('name', $value);
+        }
+        if ($this->constraint->minLength($name, $value, 2)) {
+            return $this->constraint->minLength('name', $value, 2);
+        }
+        if ($this->constraint->maxLength($name, $value, 255)) {
+            return $this->constraint->maxLength('name', $value, 255);
+        }
+    }
+
+    private function checkMail($name, $value)
+    {
+        if ($this->constraint->notBlank($name, $value)) {
+            return $this->constraint->notBlank('mail', $value);
+        }
+        if ($this->constraint->minLength($name, $value, 2)) {
+            return $this->constraint->minLength('mail', $value, 2);
+        }
+        if ($this->constraint->maxLength($name, $value, 255)) {
+            return $this->constraint->maxLength('mail', $value, 255);
+        }
+    }
+
     private function checkMessage($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('pseudo', $value);
+            return $this->constraint->notBlank('message', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('pseudo', $value, 2);
+            return $this->constraint->minLength('message', $value, 2);
         }
-        if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('pseudo', $value, 255);
+        if ($this->constraint->maxLength($name, $value, 10000)) {
+            return $this->constraint->maxLength('message', $value, 10000);
         }
     }
 }

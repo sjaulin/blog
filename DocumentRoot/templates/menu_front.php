@@ -11,4 +11,5 @@
 <li class="nav-item"><a class="nav-link" href="/index.php?route=contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Mail</a></li>
 <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/stephane.jaulin" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
 <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/sjaulin/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i> Linkedin</a></li>
+<li class="nav-item"><a class="nav-link" href="/public/files/ckfinder/files/cv.pdf" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> CV</a></li>
 </ul>

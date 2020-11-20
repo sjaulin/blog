@@ -14,14 +14,14 @@
         </tr>
         <?php foreach ($articles as $article) { ?>
             <tr>
-                <td scope="row"><?= htmlspecialchars($article->getId()); ?></td>
+                <td scope="row"><?= $article->getId(); ?></td>
                 <td scope="row"><?= !empty($article->getTop()) ? 'Oui' : 'Non'; ?></td>
-                <td scope="row"><a href="/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
-                        <?= htmlspecialchars($article->getTitle()); ?>
+                <td scope="row"><a href="/index.php?route=article&articleId=<?= $article->getId(); ?>">
+                        <?= $article->getTitle(); ?>
                     </a></td>
-                <td scope="row"><?= htmlspecialchars($article->getAuthor()); ?></td>
-                <td scope="row"><?= htmlspecialchars($article->getCreatedDate()); ?></td>
-                <td scope="row"><?= htmlspecialchars($article->getUpdatedDate()); ?></td>
+                <td scope="row"><?= $article->getAuthor(); ?></td>
+                <td scope="row"><?= $article->getCreatedDate(); ?></td>
+                <td scope="row"><?= $article->getUpdatedDate(); ?></td>
                 <td scope="row">
                     <a href="/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
                     <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
