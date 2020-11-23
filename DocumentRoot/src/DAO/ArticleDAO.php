@@ -97,7 +97,8 @@ class ArticleDAO extends DAO
         date_format(create_date, "%m") as month, 
         date_format(create_date, "%Y") as year, 
         count(id) as nb from article
-        GROUP BY MONTH(create_date), YEAR(create_date) DESC';
+        GROUP BY MONTH(create_date), YEAR(create_date) 
+        ORDER by YEAR(create_date) DESC, MONTH(create_date) DESC';
         $result = $this->createQuery($sql);
         $menu = $result->fetchAll();
         $result->closeCursor();
