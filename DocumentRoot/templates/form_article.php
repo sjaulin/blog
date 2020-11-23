@@ -13,13 +13,13 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
 
 <div class="form-group">
     <label for="title">Introduction</label><br>
-    <textarea name="teaser" class="form-control"><?= isset($post) ? htmlspecialchars($post->get('teaser')): ''; ?></textarea>
+    <textarea name="teaser" class="form-control"><?= isset($post) ? $post->get('teaser'): ''; ?></textarea>
     <?= isset($errors['teaser']) ? $errors['teaser'] : ''; ?>
 </div>
 
 <div class="form-group">
     <label for="content">Contenu</label><br>
-    <textarea id="ckeditor" name="content" class="form-control"><?= isset($post) ? htmlspecialchars($post->get('content')): ''; ?></textarea><br>
+    <textarea id="ckeditor" name="content" class="form-control"><?= isset($post) ? $post->get('content'): ''; ?></textarea><br>
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
 </div>
 
