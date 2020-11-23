@@ -1,5 +1,6 @@
 .vscode/
 nbproject/
+DocumentRoot/.phpdoc/
 DocumentRoot/vendor/
 DocumentRoot/public/libraries/
 DocumentRoot/public/components/
