@@ -7,7 +7,7 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
 
 <div class="form-group">
     <label for="title">Titre</label>
-    <input type="text" id="title" name="title" class="form-control" value="<?= isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
+    <input type="text" id="title" name="title" class="form-control" value="<?php echo isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
     <p><?= isset($errors['title']) ? $errors['title'] : ''; ?></p>
 </div>
 
