@@ -1,33 +1,41 @@
-# Mise en route
+# Install project
 
-## Docker
+## 1. LAMP environment
 
-1) Installer Docker
+### 1.1 On Docker
+1) Install Docker
 https://docs.docker.com/desktop/
 
-2) Lancer les conteneurs
-> docker docker-compose up -d
+2) Start containers
+```
+$ docker docker-compose up -d
+```
 
-## Installer les dépendances via composer
-1) Se connecter au conteneur web
-> docker exec -it blog-ocr_php-apache_1  /bin/bash
+3) To run a command in php/apache container
+```
+docker exec -it blog-ocr_php-apache_1  /bin/bash
+```
 
-2) Depuis le conteneur web, lancer les commandes :
-> composer install
-> composer update
+### 1.2 On XAMPP
+1) Install XAMPP
+https://www.apachefriends.org/
 
-## Construire la base de données
-Deux choix : La structure seule ou la structure + jeu de données.
-Deux fichiers SQL sont disponibles :
-- structure.sql
-- structure+data.sql
+## 2. Sources
+Clone git project and put all files from DocumentRoot folder to your web server documentRoot 
 
-1) Accéder à PhpMyAdmin : http://localhost:8000/
+## 3. Configure your environment
+- Modify config/environment.example.php with your config 
+- Rename file to config/environment.php
+
+### 4. Dependencies & autoload
+```
+composer dumpautoload
+composer install
+```
+
+### 5. Init Database
+- Import database.sql in your database
+
+If you use Docker you can use phpMyAdmin : http://localhost:8000/
     - Username : testuser
     - Password : testpassword
-
-2) Aller dans l'onglet "Import"
-Iporter un des deux fichiers .sql
-
-### Accéder au blog
-- L'e blog est accessible sur : http://localhost/
