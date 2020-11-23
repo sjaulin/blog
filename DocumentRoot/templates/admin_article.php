@@ -24,7 +24,7 @@
                 <td scope="row"><?= $article->getUpdatedDate(); ?></td>
                 <td scope="row">
                     <a href="/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-                    <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+                    <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>&token=<?= $token; ?>">Supprimer</a>
                 </td>
             </tr>
         <?php } ?>

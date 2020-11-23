@@ -37,20 +37,35 @@ class Router
                         $this->request->getGet()->get('articleId')
                     );
                 } elseif ($route === 'deleteArticle') {
-                    $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
+                    $this->backController->deleteArticle(
+                        $this->request->getGet()->get('articleId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'addComment') {
                     $this->frontController->addComment(
                         $this->request->getPost(),
                         $this->request->getGet()->get('articleId')
                     );
                 } elseif ($route === 'publishComment') {
-                    $this->backController->publishComment($this->request->getGet()->get('commentId'));
+                    $this->backController->publishComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'flagComment') {
-                    $this->frontController->flagComment($this->request->getGet()->get('commentId'));
+                    $this->frontController->flagComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'unflagComment') {
-                    $this->backController->unflagComment($this->request->getGet()->get('commentId'));
+                    $this->backController->unflagComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'deleteComment') {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                    $this->backController->deleteComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'register') {
                     $this->frontController->register($this->request->getPost());
                 } elseif ($route === 'login') {
@@ -60,11 +75,14 @@ class Router
                 } elseif ($route === 'updatePassword') {
                     $this->backController->updatePassword($this->request->getPost());
                 } elseif ($route === 'logout') {
-                    $this->backController->logout();
+                    $this->backController->logout($this->request->getGet()->get('token'));
                 } elseif ($route === 'deleteAccount') {
-                    $this->backController->deleteAccount();
+                    $this->backController->deleteAccount($this->request->getGet()->get('token'));
                 } elseif ($route === 'deleteUser') {
-                    $this->backController->deleteUser($this->request->getGet()->get('userId'));
+                    $this->backController->deleteUser(
+                        $this->request->getGet()->get('userId'),
+                        $this->request->getGet()->get('token')
+                    );
                 } elseif ($route === 'admin_article') {
                     $this->backController->adminArticle();
                 } elseif ($route === 'admin_comment') {

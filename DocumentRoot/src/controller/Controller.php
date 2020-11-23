@@ -36,4 +36,15 @@ abstract class Controller
         $this->post = $this->request->getPost();
         $this->session = $this->request->getSession();
     }
+
+    protected function checkToken($token)
+    {
+        if (!empty($token) && !empty($this->session->get('token'))) {
+            if ($token == $this->session->get('token')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

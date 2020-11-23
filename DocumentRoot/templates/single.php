@@ -31,11 +31,11 @@
             <?php if ($this->session->get('pseudo') && $comment->isFlag()) { ?>
                 <p>Ce commentaire a déjà été signalé</p>
             <?php } elseif ($this->session->get('pseudo')) { ?>
-                <p><a href="/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">Signaler le commentaire</a></p>
+                <p><a href="/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Signaler le commentaire</a></p>
             <?php } ?>
 
             <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
-                <p><a href="/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
+                <p><a href="/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Supprimer le commentaire</a></p>
             <?php } ?>
             <br>
         <?php } ?>
