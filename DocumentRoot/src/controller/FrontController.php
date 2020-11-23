@@ -63,7 +63,7 @@ class FrontController extends Controller
 
     public function register(Parameter $post)
     {
-        if ($this->checkLoggedIn() && $post->get('submit')) {
+        if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'User');
             if ($this->userDAO->checkUser($post)) {
                 $errors['pseudo'] = $this->userDAO->checkUser($post);
@@ -83,7 +83,7 @@ class FrontController extends Controller
 
     public function login(Parameter $post)
     {
-        if ($this->checkLoggedIn() && $post->get('submit')) {
+        if ($post->get('submit')) {
             $result = $this->userDAO->login($post);
             if ($result && $result['isPasswordValid']) {
                 $this->session->set('alert', 'Content de vous revoir');
@@ -105,7 +105,7 @@ class FrontController extends Controller
     public function contact(Parameter $post)
     {
         // The form is submitted.
-        if ($this->checkLoggedIn() && $post->get('submit')) {
+        if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'contact');
             // Without error.
             if (!$errors) {
