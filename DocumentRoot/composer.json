@@ -1,0 +1,41 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\config\\": "./config/",
+            "App\\src\\": "./src/"
+        }
+    },
+    "require": {
+        "oomphinc/composer-installers-extender": "^1.1",
+        "ckfinder/ckfinder": "3.5.1.1",
+        "phpmailer/phpmailer": "~6.1"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "ckfinder/ckfinder",
+                "version": "3.5.1.1",
+                "type": "php-lib",
+                "dist": {
+                    "url": "https://download.cksource.com/CKFinder/CKFinder%20for%20PHP/3.5.1.1/ckfinder_php_3.5.1.1.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
+    "extra": {
+        "installer-types": ["php-lib"],
+        "installer-paths": {
+            "public/libraries/php/{$name}": ["type:php-lib"]
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
+        ],
+        "post-install-cmd": [
+            "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
+        ]
+    }
+}
