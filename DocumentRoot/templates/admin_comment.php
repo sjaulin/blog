@@ -17,7 +17,7 @@
         <tr>
             <td><?= htmlspecialchars($comment->getId());?></td>
             <td>
-                <a href="index.php?route=article&articleId=<?= htmlspecialchars($comment->getArticleId());?>">
+                <a href="index.php?route=article&articleId=<?= $comment->getArticleId();?>">
                 <?= htmlspecialchars($comment->getArticleId());?></a>
             </td>
             <td><?= htmlspecialchars($comment->getPseudo());?></td>
