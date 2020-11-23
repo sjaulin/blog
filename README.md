@@ -27,13 +27,13 @@ Clone git project and put all files from DocumentRoot folder to your web server 
 - Modify config/environment.example.php with your config 
 - Rename file to config/environment.php
 
-### 4. Dependencies & autoload
+## 4. Dependencies & autoload
 ```
 composer dumpautoload
 composer install
 ```
 
-### 5. Init Database
+## 5. Init Database
 - Import database.sql in your database
 
 If you use Docker you can use phpMyAdmin : http://localhost:8000/
