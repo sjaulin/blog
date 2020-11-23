@@ -5,4 +5,4 @@ DocumentRoot/vendor/
 DocumentRoot/public/libraries/
 DocumentRoot/public/components/
 DocumentRoot/public/files/
-DocumentRoot/config/env/
+DocumentRoot/config/environment.php
