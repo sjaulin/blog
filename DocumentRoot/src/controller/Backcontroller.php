@@ -12,16 +12,6 @@ class BackController extends Controller
         'admin_user' => array('title' => 'Administrer les utilisateurs')
     );
 
-    private function checkLoggedIn()
-    {
-        if (!$this->session->get('pseudo')) {
-            $this->session->set('alert', 'Vous devez vous connecter pour accéder à cette page');
-            header('Location: index.php?route=login');
-        } else {
-            return true;
-        }
-    }
-
     private function checkAdmin()
     {
         $this->checkLoggedIn();

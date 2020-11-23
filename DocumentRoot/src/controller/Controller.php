@@ -37,6 +37,21 @@ abstract class Controller
         $this->session = $this->request->getSession();
     }
 
+    protected function checkLoggedIn()
+    {
+        if (!empty($_SERVER['HTTP_REFERER'])) {
+            $site = parse_url($_SERVER['HTTP_REFERER']);
+            $host = !empty($site['host']) ? $site['host'] : null;
+        }
+
+        if (!$this->session->get('pseudo') && !empty($_SERVER['SERVER_NAME']) && !empty($host) && $_SERVER['SERVER_NAME'] == $host) {
+            $this->session->set('alert', 'Vous devez vous connecter pour accéder à cette page');
+            header('Location: index.php?route=login');
+        } else {
+            return true;
+        }
+    }
+    
     protected function checkToken($token)
     {
         if (!empty($token) && !empty($this->session->get('token'))) {

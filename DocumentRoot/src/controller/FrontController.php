@@ -45,7 +45,7 @@ class FrontController extends Controller
 
     public function addComment(Parameter $post, $articleId)
     {
-        if ($post->get('submit')) {
+        if ($this->checkLoggedIn() && $post->get('submit')) {
             $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
             $this->session->set('alert', 'Le nouveau commentaire a bien été ajouté');
             header('Location: index.php?route=article&articleId='.$articleId);
@@ -54,7 +54,7 @@ class FrontController extends Controller
 
     public function flagComment($commentId, $token)
     {
-        if ($this->checkToken($token)) {
+        if ($this->checkLoggedIn() && $this->checkToken($token)) {
             $this->commentDAO->flagComment($commentId);
             $this->session->set('alert', 'Le commentaire a bien été signalé');
             header('Location: index.php');
@@ -63,7 +63,7 @@ class FrontController extends Controller
 
     public function register(Parameter $post)
     {
-        if ($post->get('submit')) {
+        if ($this->checkLoggedIn() && $post->get('submit')) {
             $errors = $this->validation->validate($post, 'User');
             if ($this->userDAO->checkUser($post)) {
                 $errors['pseudo'] = $this->userDAO->checkUser($post);
@@ -83,7 +83,7 @@ class FrontController extends Controller
 
     public function login(Parameter $post)
     {
-        if ($post->get('submit')) {
+        if ($this->checkLoggedIn() && $post->get('submit')) {
             $result = $this->userDAO->login($post);
             if ($result && $result['isPasswordValid']) {
                 $this->session->set('alert', 'Content de vous revoir');
@@ -105,7 +105,7 @@ class FrontController extends Controller
     public function contact(Parameter $post)
     {
         // The form is submitted.
-        if ($post->get('submit')) {
+        if ($this->checkLoggedIn() && $post->get('submit')) {
             $errors = $this->validation->validate($post, 'contact');
             // Without error.
             if (!$errors) {
