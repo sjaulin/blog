@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : lun. 23 nov. 2020 à 11:47
+-- Généré le : mar. 24 nov. 2020 à 13:45
 -- Version du serveur :  10.1.48-MariaDB-1~bionic
 -- Version de PHP : 7.4.11
 
@@ -60,28 +60,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `category`
---
-
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
-  `title` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `category_article`
---
-
-CREATE TABLE `category_article` (
-  `category_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `comment`
 --
 
@@ -105,20 +83,9 @@ INSERT INTO `comment` (`id`, `article_id`, `user_id`, `content`, `published`, `c
 (19, 40, 9, 'z', 1, '2020-11-06 15:29:57', 0),
 (20, 42, 9, 'test', 1, '2020-11-09 11:20:27', 0),
 (25, 41, 9, 'sssssss', 1, '2020-11-13 09:38:10', 0),
-(26, 41, 9, 'tre', 1, '2020-11-13 09:39:16', 0),
-(27, 41, 9, 'zzz', 1, '2020-11-13 09:46:59', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `config`
---
-
-CREATE TABLE `config` (
-  `id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `value` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(26, 41, 9, 'tre', 1, '2020-11-13 09:39:16', 1),
+(27, 41, 9, 'zzz', 1, '2020-11-13 09:46:59', 1),
+(30, 43, 9, 'test', NULL, '2020-11-23 17:25:42', 0);
 
 -- --------------------------------------------------------
 
@@ -177,32 +144,12 @@ ALTER TABLE `article`
   ADD KEY `fk_user_id` (`user_id`) USING BTREE;
 
 --
--- Index pour la table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `category_article`
---
-ALTER TABLE `category_article`
-  ADD PRIMARY KEY (`category_id`,`post_id`),
-  ADD KEY `fk_category_has_post_post1_idx` (`post_id`),
-  ADD KEY `fk_category_has_post_category1_idx` (`category_id`);
-
---
 -- Index pour la table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`,`article_id`,`user_id`),
   ADD KEY `fk_comment_post_idx` (`article_id`),
   ADD KEY `fk_comment_user1_idx` (`user_id`);
-
---
--- Index pour la table `config`
---
-ALTER TABLE `config`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `role`
@@ -226,25 +173,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT pour la table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT pour la table `config`
---
-ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -267,13 +202,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `article`
   ADD CONSTRAINT `fk_post_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `category_article`
---
-ALTER TABLE `category_article`
-  ADD CONSTRAINT `fk_category_has_post_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_category_has_post_post1` FOREIGN KEY (`post_id`) REFERENCES `article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `comment`

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @file
+ * Router class.
+ */
 namespace App\config;
 
 use App\src\controller\BackController;
@@ -7,6 +10,9 @@ use App\src\controller\ErrorController;
 use App\src\controller\FrontController;
 use Exception;
 
+/**
+ * Router calls the correct controller according requests.
+ */
 class Router
 {
     private $frontController;
@@ -22,6 +28,9 @@ class Router
         $this->errorController = new ErrorController();
     }
 
+    /**
+     * Get route and call the correct controller.
+     */
     public function run()
     {
         $route = $this->request->getGet()->get('route');
