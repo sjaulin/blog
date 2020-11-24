@@ -1,4 +1,5 @@
 <?php
+
 namespace App\src\controller;
 
 use App\config\Parameter;
@@ -10,16 +11,6 @@ class BackController extends Controller
         'admin_comment' => array('title' => 'Administrer les commentaires'),
         'admin_user' => array('title' => 'Administrer les utilisateurs')
     );
-
-    private function checkLoggedIn()
-    {
-        if (!$this->session->get('pseudo')) {
-            $this->session->set('alert', 'Vous devez vous connecter pour accéder à cette page');
-            header('Location: index.php?route=login');
-        } else {
-            return true;
-        }
-    }
 
     private function checkAdmin()
     {
@@ -39,6 +30,7 @@ class BackController extends Controller
             return $this->view->renderAdmin('admin_article', [
                 'menu' => self::$menu,
                 'articles' => $articles,
+                'token' => $this->session->get('token')
             ]);
         }
     }
@@ -52,6 +44,7 @@ class BackController extends Controller
                 'menu' => self::$menu,
                 'unpubliedcomments' => $unpubliedcomments,
                 'flagcomments' => $flagcomments,
+                'token' => $this->session->get('token')
             ]);
         }
     }
@@ -63,10 +56,11 @@ class BackController extends Controller
             return $this->view->renderAdmin('admin_user', [
                 'menu' => self::$menu,
                 'users' => $users,
+                'token' => $this->session->get('token')
             ]);
         }
     }
-    
+
     public function addArticle(Parameter $post)
     {
         if ($this->checkAdmin()) {
@@ -126,34 +120,36 @@ class BackController extends Controller
         }
     }
 
-    public function deleteArticle($articleId)
+    public function deleteArticle($articleId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set('alert', 'L\' article a bien été supprimé');
             header('Location: index.php?route=admin_article');
         }
     }
 
-    public function publishComment($commentId)
+    public function publishComment($commentId, $token)
     {
-        $this->commentDAO->publishComment($commentId);
-        $this->session->set('alert', 'Le commentaire a bien été publié');
-        header('Location: index.php?route=admin_comment');
+        if ($this->checkAdmin() && $this->checkToken($token)) {
+            $this->commentDAO->publishComment($commentId);
+            $this->session->set('alert', 'Le commentaire a bien été publié');
+            header('Location: index.php?route=admin_comment');
+        }
     }
 
-    public function unflagComment($commentId)
+    public function unflagComment($commentId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->commentDAO->unflagComment($commentId);
             $this->session->set('alert', 'Le commentaire a bien été désignalé');
             header('Location: index.php?route=admin_comment');
         }
     }
 
-    public function deleteComment($commentId)
+    public function deleteComment($commentId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('alert', 'Le commentaire a bien été supprimé');
             header('Location: index.php?route=admin_comment');

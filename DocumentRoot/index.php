@@ -3,7 +3,8 @@
  * @file
  * The PHP page that serves all page requests on a site.
  */
-require './config/environment.php';
+ini_set('session.cookie_httponly', 1);
+require './environment.php';
 require './vendor/autoload.php';
 session_start();
 

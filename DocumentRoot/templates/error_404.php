@@ -1,2 +1,1 @@
-<?php
-echo 'page non trouvée';
+<?= 'page non trouvée';?>

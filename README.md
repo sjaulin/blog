@@ -1,3 +1,11 @@
+# Mon blog
+
+Code Climate :
+[![Maintainability](https://api.codeclimate.com/v1/badges/ce6c2859b6545a32c2a4/maintainability)](https://codeclimate.com/github/sjaulin/blog-ocr/maintainability)
+
+Codacy :
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/14dfa3e49d344aa9a7e6e2544b061bf3)](https://www.codacy.com/gh/sjaulin/blog-ocr/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sjaulin/blog-ocr&amp;utm_campaign=Badge_Grade)
+
 # Install project
 
 ## 1. LAMP environment
@@ -27,13 +35,13 @@ Clone git project and put all files from DocumentRoot folder to your web server 
 - Modify config/environment.example.php with your config 
 - Rename file to config/environment.php
 
-### 4. Dependencies & autoload
+## 4. Dependencies & autoload
 ```
 composer dumpautoload
 composer install
 ```
 
-### 5. Init Database
+## 5. Init Database
 - Import database.sql in your database
 
 If you use Docker you can use phpMyAdmin : http://localhost:8000/

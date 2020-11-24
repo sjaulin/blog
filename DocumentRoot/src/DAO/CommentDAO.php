@@ -66,7 +66,7 @@ class CommentDAO extends DAO
 
     public function getUnpublishedComments()
     {
-        $sql = 'SELECT comment.id, user.pseudo, comment.content, comment.create_date, comment.article_id 
+        $sql = 'SELECT comment.id, user.pseudo, comment.content, comment.create_date, comment.article_id, comment.flag 
         FROM comment INNER JOIN user ON user.id = comment.user_id WHERE (published IS NULL OR published = 0) 
         ORDER BY create_date DESC';
         $result = $this->createQuery($sql);

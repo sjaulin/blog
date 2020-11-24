@@ -38,24 +38,27 @@ class FrontController extends Controller
                 'menu' => $menu,
                 'article' => $article,
                 'comments' => $comments,
+                'token' => $this->session->get('token')
             ],
         );
     }
 
     public function addComment(Parameter $post, $articleId)
     {
-        if ($post->get('submit')) {
+        if ($this->checkLoggedIn() && $post->get('submit')) {
             $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
             $this->session->set('alert', 'Le nouveau commentaire a bien été ajouté');
             header('Location: index.php?route=article&articleId='.$articleId);
         }
     }
 
-    public function flagComment($commentId)
+    public function flagComment($commentId, $token)
     {
-        $this->commentDAO->flagComment($commentId);
-        $this->session->set('alert', 'Le commentaire a bien été signalé');
-        header('Location: index.php');
+        if ($this->checkLoggedIn() && $this->checkToken($token)) {
+            $this->commentDAO->flagComment($commentId);
+            $this->session->set('alert', 'Le commentaire a bien été signalé');
+            header('Location: index.php');
+        }
     }
 
     public function register(Parameter $post)
@@ -87,6 +90,7 @@ class FrontController extends Controller
                 $this->session->set('id', $result['result']['id']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('pseudo', $post->get('pseudo'));
+                $this->session->set('token', md5(time() * rand(128, 731)));
                 header('Location: index.php');
             } else {
                 $this->session->set('alert', 'Le pseudo ou le mot de passe sont incorrects');

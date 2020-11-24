@@ -1,2 +1,1 @@
-<?php
-echo 'problème serveur : ' . $message;
+<?= 'problème serveur : ' . $message; ?>

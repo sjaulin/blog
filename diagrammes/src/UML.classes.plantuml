@@ -1,0 +1,28 @@
+@startuml
+class User {
+  pseudo
+  password
+  createdDate
+}
+
+class Article {
+    title 
+    teaser 
+    content 
+    author 
+    createdDate 
+    updatedDate 
+    top
+}
+
+class Comment {
+    author
+    content
+    createdDate
+}
+
+User "1" --- "0..*" Article
+User "1" --- "0..*" Comment
+Article "1" --- "0..*" Comment
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+title Ajout d'un commentaire
+actor Abonné
+collections EspaceAbonné 
+collections Commentaire
+collections Administration
+actor Admin
+alt si pas authentifié
+Abonné -> EspaceAbonné : Se connecter
+EspaceAbonné --> Abonné : formulaire d'authentification
+Abonné -> EspaceAbonné : Saisir : login & mot de passe
+EspaceAbonné --> Abonné : Connection ok, redirection vers la page d'administration
+end
+Commentaire --> Abonné : Formulaire d'ajout d'un commentaire
+Abonné -> Commentaire : Saisir contenu
+Commentaire --> Abonné : Message d'ajout + redirection vers la page
+Commentaire --> Administration : Commentaire en attente
+Admin -> Administration : Publier le commentaire
+Administration --> Commentaire : Commentaire publié
+@enduml

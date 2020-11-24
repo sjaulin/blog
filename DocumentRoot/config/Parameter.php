@@ -13,7 +13,7 @@ class Parameter
     public function get($name)
     {
         if (isset($this->parameter[$name])) {
-            return $this->parameter[$name];
+            return htmlspecialchars($this->parameter[$name]);
         }
     }
 

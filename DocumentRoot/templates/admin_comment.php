@@ -15,17 +15,17 @@
     foreach ($unpubliedcomments as $comment) {
         ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getId());?></td>
+            <td><?= $comment->getId();?></td>
             <td>
-                <a href="index.php?route=article&articleId=<?= htmlspecialchars($comment->getArticleId());?>">
-                <?= htmlspecialchars($comment->getArticleId());?></a>
+                <a href="index.php?route=article&articleId=<?= $comment->getArticleId();?>">
+                <?= $comment->getArticleId();?></a>
             </td>
-            <td><?= htmlspecialchars($comment->getPseudo());?></td>
-            <td><?= substr(htmlspecialchars($comment->getContent()), 0, 150);?></td>
-            <td>Créé le : <?= htmlspecialchars($comment->getCreatedDate());?></td>
+            <td><?= $comment->getPseudo();?></td>
+            <td><?= substr($comment->getContent(), 0, 150);?></td>
+            <td>Créé le : <?= $comment->getCreatedDate();?></td>
             <td>
-                <a href="index.php?route=publishComment&commentId=<?= $comment->getId(); ?>">Publier le commentaire</a>
-                <a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a>
+                <a href="index.php?route=publishComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Publier le commentaire</a>
+                <a href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Supprimer le commentaire</a>
             </td>
         </tr>
         <?php
@@ -46,13 +46,13 @@
     foreach ($flagcomments as $comment) {
         ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getId());?></td>
-            <td><?= htmlspecialchars($comment->getPseudo());?></td>
-            <td><?= substr(htmlspecialchars($comment->getContent()), 0, 150);?></td>
-            <td>Créé le : <?= htmlspecialchars($comment->getCreatedDate());?></td>
+            <td><?= $comment->getId();?></td>
+            <td><?= $comment->getPseudo();?></td>
+            <td><?= substr($comment->getContent(), 0, 150);?></td>
+            <td>Créé le : <?= $comment->getCreatedDate();?></td>
             <td>
-                <a href="/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">Désignaler le commentaire</a>
-                <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a>
+                <a href="/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Désignaler le commentaire</a>
+                <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Supprimer le commentaire</a>
             </td>
         </tr>
         <?php
