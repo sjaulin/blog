@@ -73,7 +73,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\config\\Router",
             "name": "Router",
-            "summary": "",
+            "summary": "Router\u0020calls\u0020the\u0020correct\u0020controller\u0020according\u0020requests.",
             "url": "classes/App-config-Router.html"
         },                {
             "fqsen": "\\App\\config\\Router\u003A\u003A__construct\u0028\u0029",
@@ -83,7 +83,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\config\\Router\u003A\u003Arun\u0028\u0029",
             "name": "run",
-            "summary": "",
+            "summary": "Get\u0020route\u0020and\u0020call\u0020the\u0020correct\u0020controller.",
             "url": "classes/App-config-Router.html#method_run"
         },                {
             "fqsen": "\\App\\config\\Router\u003A\u003A\u0024frontController",
@@ -371,11 +371,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-src-controller-BackController.html"
         },                {
-            "fqsen": "\\App\\src\\controller\\BackController\u003A\u003AcheckLoggedIn\u0028\u0029",
-            "name": "checkLoggedIn",
-            "summary": "",
-            "url": "classes/App-src-controller-BackController.html#method_checkLoggedIn"
-        },                {
             "fqsen": "\\App\\src\\controller\\BackController\u003A\u003AcheckAdmin\u0028\u0029",
             "name": "checkAdmin",
             "summary": "",
@@ -465,6 +460,21 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/App-src-controller-Controller.html#method___construct"
+        },                {
+            "fqsen": "\\App\\src\\controller\\Controller\u003A\u003AcheckLoggedIn\u0028\u0029",
+            "name": "checkLoggedIn",
+            "summary": "",
+            "url": "classes/App-src-controller-Controller.html#method_checkLoggedIn"
+        },                {
+            "fqsen": "\\App\\src\\controller\\Controller\u003A\u003AredirectLogin\u0028\u0029",
+            "name": "redirectLogin",
+            "summary": "",
+            "url": "classes/App-src-controller-Controller.html#method_redirectLogin"
+        },                {
+            "fqsen": "\\App\\src\\controller\\Controller\u003A\u003AcheckToken\u0028\u0029",
+            "name": "checkToken",
+            "summary": "",
+            "url": "classes/App-src-controller-Controller.html#method_checkToken"
         },                {
             "fqsen": "\\App\\src\\controller\\Controller\u003A\u003A\u0024articleDAO",
             "name": "articleDAO",
@@ -1043,7 +1053,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\model\\View",
             "name": "View",
-            "summary": "View",
+            "summary": "",
             "url": "classes/App-src-model-View.html"
         },                {
             "fqsen": "\\App\\src\\model\\View\u003A\u003A__construct\u0028\u0029",
