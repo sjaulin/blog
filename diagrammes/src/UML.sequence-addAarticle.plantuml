@@ -1,0 +1,16 @@
+@startuml
+title Création d'un article
+actor Admin
+collections Administration
+collections Article 
+alt si pas authentifié
+Admin -> Administration : Se connecter
+Administration --> Admin : formulaire d'authentification
+Admin -> Administration : Saisir : login & mot de passe
+Administration --> Admin : Connection ok, redirection vers la page d'administration
+end
+Admin -> Article : Lien ajouter un article
+Article --> Admin : Formulaire de renseignement
+Admin -> Article : Saisir titre, chapeau, contenu, page d'accueil 
+Article --> Admin : Création ok, redirection vers la page d'administration
+@enduml
