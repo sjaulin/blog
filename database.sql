@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : mar. 24 nov. 2020 à 13:45
+-- Généré le : mer. 25 nov. 2020 à 13:57
 -- Version du serveur :  10.1.48-MariaDB-1~bionic
 -- Version de PHP : 7.4.11
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `title` varchar(45) NOT NULL,
   `teaser` text,
   `content` text NOT NULL,
@@ -49,14 +49,6 @@ INSERT INTO `article` (`id`, `user_id`, `title`, `teaser`, `content`, `top`, `cr
 (43, 9, 'Ut enim ad minima', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae', '<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n', 0, '2020-09-06 18:57:09', '2020-11-23 12:46:25'),
 (44, 9, 'Bienvenue sur mon blog', 'Dans le cadre de mon parcours de formation chez OpenClassrooms, j\'ai réalisé ce blog en PHP en respectant une conception orienté objet et une architecture MVC. Bonne visite ! ', '<p><img alt=\"\" src=\"/public/files/ckfinder/images/stephane-jaulin.png\" style=\"border-style:solid; border-width:1px; float:left; margin:10px\" />Bonjour, je m&#39;appelle <strong>St&eacute;phane Jaulin</strong>, je suis en formation chez OpenClassrooms pour apprendre le framework Symfony.</p>\r\n\r\n<p>Comme je ne suis pas assez inspir&eacute;, voici ce que je peux vous dire :</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n<p>Pour finir, voici mon <a href=\"/public/files/ckfinder/files/St%C3%A9phane%20Jaulin%20-%202019-2.pdf\" target=\"_blank\">CV</a></p>\r\n', 1, '2020-11-10 16:57:14', '2020-11-20 09:57:54');
 
---
--- Déclencheurs `article`
---
-DELIMITER $$
-CREATE TRIGGER `delete_article_comments` BEFORE DELETE ON `article` FOR EACH ROW DELETE FROM comment WHERE article_id = OLD.id
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -66,7 +58,7 @@ DELIMITER ;
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `content` varchar(45) DEFAULT NULL,
   `published` tinyint(4) DEFAULT NULL,
   `create_date` datetime NOT NULL,
@@ -78,14 +70,11 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `article_id`, `user_id`, `content`, `published`, `create_date`, `flag`) VALUES
-(16, 40, 9, 'test', 1, '2020-11-03 15:05:52', 0),
-(17, 41, 9, 'ee', 1, '2020-11-06 15:15:49', 0),
-(19, 40, 9, 'z', 1, '2020-11-06 15:29:57', 0),
-(20, 42, 9, 'test', 1, '2020-11-09 11:20:27', 0),
-(25, 41, 9, 'sssssss', 1, '2020-11-13 09:38:10', 0),
-(26, 41, 9, 'tre', 1, '2020-11-13 09:39:16', 1),
-(27, 41, 9, 'zzz', 1, '2020-11-13 09:46:59', 1),
-(30, 43, 9, 'test', NULL, '2020-11-23 17:25:42', 0);
+(16, 40, 9, 'Ceci est un commentaire', 1, '2020-11-03 15:05:52', 0),
+(17, 41, 9, 'Un autre commentaire', 1, '2020-11-06 15:15:49', 0),
+(19, 40, 9, 'C\'est chouette', 1, '2020-11-06 15:29:57', 0),
+(20, 42, 9, 'Bref, c\'est bien !', 1, '2020-11-09 11:20:27', 0),
+(25, 41, 9, 'Bonjour à tous ! j\'adore ce site.', 1, '2020-11-13 09:38:10', 0);
 
 -- --------------------------------------------------------
 
@@ -140,16 +129,16 @@ INSERT INTO `user` (`id`, `pseudo`, `password`, `firstname`, `lastname`, `checke
 -- Index pour la table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`,`user_id`),
-  ADD KEY `fk_user_id` (`user_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`,`article_id`,`user_id`),
-  ADD KEY `fk_comment_post_idx` (`article_id`),
-  ADD KEY `fk_comment_user1_idx` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `role`
@@ -162,8 +151,7 @@ ALTER TABLE `role`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username_UNIQUE` (`pseudo`),
-  ADD KEY `fk_role_id` (`role_id`);
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -173,13 +161,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -191,7 +179,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Contraintes pour les tables déchargées
@@ -201,20 +189,20 @@ ALTER TABLE `user`
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `fk_post_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `fk_comment_post` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

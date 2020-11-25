@@ -68,12 +68,10 @@ class UserDAO extends DAO
 
     public function deleteAccount($pseudo)
     {
-        // TODO Move article to an other user.
         $sql = 'DELETE FROM user WHERE pseudo = ?';
         $this->createQuery($sql, [$pseudo]);
     }
 
-        // TODO disale user
     public function deleteUser($userId)
     {
         $sql = 'DELETE FROM user WHERE id = ?';

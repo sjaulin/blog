@@ -114,7 +114,7 @@ class Article
      */
     public function getAuthor()
     {
-        return $this->author;
+        return !empty($this->author) ? $this->author : 'Anonyme';
     }
 
     /**
