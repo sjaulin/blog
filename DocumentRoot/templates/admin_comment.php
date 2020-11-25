@@ -52,7 +52,7 @@
             <td>Créé le : <?= $comment->getCreatedDate();?></td>
             <td>
                 <a href="/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Désignaler le commentaire</a>
-                <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Supprimer le commentaire</a>
+                <a href="/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&token=<?= $token; ?>">Supprimer le commentaire</a>
             </td>
         </tr>
         <?php

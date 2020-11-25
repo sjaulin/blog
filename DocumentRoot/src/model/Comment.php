@@ -66,7 +66,7 @@ class Comment
      */
     public function getPseudo()
     {
-        return $this->pseudo;
+        return !empty($this->pseudo) ? $this->pseudo : 'Anonyme';
     }
 
     /**

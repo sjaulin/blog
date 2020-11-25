@@ -28,7 +28,7 @@ class ArticleDAO extends DAO
     public function getArticles($year = null, $month = null, $all = null)
     {
         $sql = 'SELECT article.id, article.title, article.teaser, article.content, user.pseudo, date_format(article.create_date, "%d %M %Y à %H:%i:%s") create_date, article.update_date, article.top FROM article ' .
-            'INNER JOIN user ON article.user_id = user.id ';
+            'LEFT JOIN user ON article.user_id = user.id ';
 
         if (!empty($year) && !empty($month)) {
             $sql .= 'WHERE date_format(article.create_date, "%Y") = "' . $year . '" AND date_format(article.create_date, "%m") = "' . $month . '" ';
@@ -56,7 +56,7 @@ class ArticleDAO extends DAO
     {
         $sql = 'SELECT article.id, article.title, article.teaser, article.content, date_format(article.create_date, "%d %M %Y à %H:%i:%s") create_date, date_format(article.update_date, "%d %M %Y à %H:%i:%s") update_date, article.top, ' .
             'user.pseudo ' .
-            'FROM article INNER JOIN user ON article.user_id = user.id WHERE article.id = ?';
+            'FROM article LEFT JOIN user ON article.user_id = user.id WHERE article.id = ?';
         $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
         $result->closeCursor();

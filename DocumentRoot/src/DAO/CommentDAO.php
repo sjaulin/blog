@@ -24,7 +24,7 @@ class CommentDAO extends DAO
     public function getCommentsFromArticle($articleId)
     {
         $sql = 'SELECT comment.id, comment.content, user.pseudo, comment.create_date, comment.article_id, comment.flag FROM comment 
-        INNER JOIN user ON user.id = comment.user_id WHERE article_id = ? AND published = 1 ORDER BY create_date DESC';
+        LEFT JOIN user ON user.id = comment.user_id WHERE article_id = ? AND published = 1 ORDER BY create_date DESC';
         $result = $this->createQuery($sql, [$articleId]);
         $comments = [];
         foreach ($result as $row) {
@@ -67,7 +67,7 @@ class CommentDAO extends DAO
     public function getUnpublishedComments()
     {
         $sql = 'SELECT comment.id, user.pseudo, comment.content, comment.create_date, comment.article_id, comment.flag 
-        FROM comment INNER JOIN user ON user.id = comment.user_id WHERE (published IS NULL OR published = 0) 
+        FROM comment LEFT JOIN user ON user.id = comment.user_id WHERE (published IS NULL OR published = 0) 
         ORDER BY create_date DESC';
         $result = $this->createQuery($sql);
         $comments = [];
@@ -82,7 +82,7 @@ class CommentDAO extends DAO
     public function getFlagComments()
     {
         $sql = 'SELECT comment.id, user.pseudo, comment.content, comment.create_date, comment.article_id 
-        FROM comment INNER JOIN user ON user.id = comment.user_id WHERE flag = ? 
+        FROM comment LEFT JOIN user ON user.id = comment.user_id WHERE flag = ? 
         ORDER BY create_date DESC';
         $result = $this->createQuery($sql, [1]);
         $comments = [];
