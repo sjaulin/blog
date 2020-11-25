@@ -4,6 +4,9 @@ namespace App\src\controller;
 
 use App\config\Parameter;
 
+/**
+ * Back controller is use to set instructions of actions (often visitors actions) called by router.
+ */
 class FrontController extends Controller
 {
 

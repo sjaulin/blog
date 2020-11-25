@@ -2,6 +2,9 @@
 
 namespace App\src\constraint;
 
+/**
+ * Validation (router) calls the correct Validation according context.
+ */
 class Validation
 {
     public function validate($data, $name)

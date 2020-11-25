@@ -2,6 +2,9 @@
 
 namespace App\src\model;
 
+/**
+ * Work with user entity.
+ */
 class User
 {
     /**

@@ -2,6 +2,9 @@
 
 namespace App\src\model;
 
+/**
+ * Work with article entity.
+ */
 class Article
 {
 

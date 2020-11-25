@@ -1,6 +1,9 @@
 <?php
 namespace App\config;
 
+/**
+ * Work with values on POST & GET data.
+ */
 class Parameter
 {
     private $parameter;

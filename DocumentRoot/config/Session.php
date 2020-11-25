@@ -2,6 +2,9 @@
 
 namespace App\config;
 
+/**
+ * Work with values on SESSION data.
+ */
 class Session
 {
     private $session;

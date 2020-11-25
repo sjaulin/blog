@@ -10,6 +10,9 @@ use App\src\DAO\UserDAO;
 use App\src\model\Mailer;
 use App\src\model\View;
 
+/**
+ * Abstract controller class
+ */
 abstract class Controller
 {
     protected $articleDAO;

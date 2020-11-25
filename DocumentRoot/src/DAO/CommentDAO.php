@@ -1,12 +1,12 @@
 <?php
-/**
- * Comment Data Access Object.
- */
 namespace App\src\DAO;
 
 use App\config\Parameter;
 use App\src\model\Comment;
 
+/**
+ * Comment Data Access Object.
+ */
 class CommentDAO extends DAO
 {
     private function buildObject($row)

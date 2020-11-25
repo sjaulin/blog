@@ -4,6 +4,9 @@ namespace App\src\constraint;
 
 use App\config\Parameter;
 
+/**
+ * Set rules to used on contact fields.
+ */
 class ContactValidation extends Validation
 {
     private $errors = [];

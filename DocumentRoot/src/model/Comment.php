@@ -2,6 +2,9 @@
 
 namespace App\src\model;
 
+/**
+ * Work with comment entity.
+ */
 class Comment
 {
     /**
