@@ -5,6 +5,9 @@ namespace App\src\DAO;
 use App\config\Parameter;
 use App\src\model\User;
 
+/**
+ * User Data Access Object.
+ */
 class UserDAO extends DAO
 {
     private function buildObject($row)

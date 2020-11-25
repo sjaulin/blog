@@ -2,6 +2,9 @@
 
 namespace App\src\constraint;
 
+/**
+ * Set rules to used on constraints.
+ */
 class Constraint
 {
     public function notBlank($name, $value)

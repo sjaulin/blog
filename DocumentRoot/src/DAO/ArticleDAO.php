@@ -1,14 +1,12 @@
 <?php
-
-/**
- * Article Data Access Object.
- */
-
 namespace App\src\DAO;
 
 use App\config\Parameter;
 use App\src\model\Article;
 
+/**
+ * Article Data Access Object.
+ */
 class ArticleDAO extends DAO
 {
     private function buildObject($row)

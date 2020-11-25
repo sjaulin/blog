@@ -4,6 +4,9 @@ namespace App\src\constraint;
 
 use App\config\Parameter;
 
+/**
+ * Set rules to used on users fields.
+ */
 class UserValidation extends Validation
 {
     private $errors = [];

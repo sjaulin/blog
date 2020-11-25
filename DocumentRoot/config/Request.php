@@ -2,6 +2,9 @@
 
 namespace App\config;
 
+/**
+ * Work with request data (GET, POST, SESSION...)
+ */
 class Request
 {
     private $get;

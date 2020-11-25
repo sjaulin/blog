@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\App\\config\\Parameter",
             "name": "Parameter",
-            "summary": "",
+            "summary": "Work\u0020with\u0020values\u0020on\u0020POST\u0020\u0026\u0020GET\u0020data.",
             "url": "classes/App-config-Parameter.html"
         },                {
             "fqsen": "\\App\\config\\Parameter\u003A\u003A__construct\u0028\u0029",
@@ -33,7 +33,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\config\\Request",
             "name": "Request",
-            "summary": "",
+            "summary": "Work\u0020with\u0020request\u0020data\u0020\u0028GET,\u0020POST,\u0020SESSION...\u0029",
             "url": "classes/App-config-Request.html"
         },                {
             "fqsen": "\\App\\config\\Request\u003A\u003A__construct\u0028\u0029",
@@ -108,7 +108,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\config\\Session",
             "name": "Session",
-            "summary": "",
+            "summary": "Work\u0020with\u0020values\u0020on\u0020SESSION\u0020data.",
             "url": "classes/App-config-Session.html"
         },                {
             "fqsen": "\\App\\config\\Session\u003A\u003A__construct\u0028\u0029",
@@ -153,7 +153,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\ArticleValidation",
             "name": "ArticleValidation",
-            "summary": "",
+            "summary": "Set\u0020rules\u0020to\u0020used\u0020on\u0020articles\u0020fields.",
             "url": "classes/App-src-constraint-ArticleValidation.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\ArticleValidation\u003A\u003A__construct\u0028\u0029",
@@ -198,7 +198,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\CommentValidation",
             "name": "CommentValidation",
-            "summary": "",
+            "summary": "Set\u0020rules\u0020to\u0020used\u0020on\u0020comments\u0020fields.",
             "url": "classes/App-src-constraint-CommentValidation.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\CommentValidation\u003A\u003A__construct\u0028\u0029",
@@ -243,7 +243,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\Constraint",
             "name": "Constraint",
-            "summary": "",
+            "summary": "Set\u0020rules\u0020to\u0020used\u0020on\u0020constraints.",
             "url": "classes/App-src-constraint-Constraint.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\Constraint\u003A\u003AnotBlank\u0028\u0029",
@@ -263,7 +263,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\ContactValidation",
             "name": "ContactValidation",
-            "summary": "",
+            "summary": "Set\u0020rules\u0020to\u0020used\u0020on\u0020contact\u0020fields.",
             "url": "classes/App-src-constraint-ContactValidation.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\ContactValidation\u003A\u003A__construct\u0028\u0029",
@@ -313,7 +313,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\UserValidation",
             "name": "UserValidation",
-            "summary": "",
+            "summary": "Set\u0020rules\u0020to\u0020used\u0020on\u0020users\u0020fields.",
             "url": "classes/App-src-constraint-UserValidation.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\UserValidation\u003A\u003A__construct\u0028\u0029",
@@ -358,7 +358,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\constraint\\Validation",
             "name": "Validation",
-            "summary": "",
+            "summary": "Validation\u0020\u0028router\u0029\u0020calls\u0020the\u0020correct\u0020Validation\u0020according\u0020context.",
             "url": "classes/App-src-constraint-Validation.html"
         },                {
             "fqsen": "\\App\\src\\constraint\\Validation\u003A\u003Avalidate\u0028\u0029",
@@ -368,7 +368,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\controller\\BackController",
             "name": "BackController",
-            "summary": "",
+            "summary": "Back\u0020controller\u0020is\u0020use\u0020to\u0020set\u0020instructions\u0020of\u0020actions\u0020\u0028often\u0020admin\u0020actions\u0029\u0020called\u0020by\u0020router.",
             "url": "classes/App-src-controller-BackController.html"
         },                {
             "fqsen": "\\App\\src\\controller\\BackController\u003A\u003AcheckAdmin\u0028\u0029",
@@ -453,7 +453,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\controller\\Controller",
             "name": "Controller",
-            "summary": "",
+            "summary": "Abstract\u0020controller\u0020class",
             "url": "classes/App-src-controller-Controller.html"
         },                {
             "fqsen": "\\App\\src\\controller\\Controller\u003A\u003A__construct\u0028\u0029",
@@ -528,7 +528,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\controller\\ErrorController",
             "name": "ErrorController",
-            "summary": "",
+            "summary": "Abstract\u0020controller\u0020class",
             "url": "classes/App-src-controller-ErrorController.html"
         },                {
             "fqsen": "\\App\\src\\controller\\ErrorController\u003A\u003AerrorNotFound\u0028\u0029",
@@ -543,7 +543,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\controller\\FrontController",
             "name": "FrontController",
-            "summary": "",
+            "summary": "Back\u0020controller\u0020is\u0020use\u0020to\u0020set\u0020instructions\u0020of\u0020actions\u0020\u0028often\u0020visitors\u0020actions\u0029\u0020called\u0020by\u0020router.",
             "url": "classes/App-src-controller-FrontController.html"
         },                {
             "fqsen": "\\App\\src\\controller\\FrontController\u003A\u003Ahome\u0028\u0029",
@@ -583,7 +583,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\DAO\\ArticleDAO",
             "name": "ArticleDAO",
-            "summary": "Data\u0020Acces\u0020Object.",
+            "summary": "Article\u0020Data\u0020Access\u0020Object.",
             "url": "classes/App-src-DAO-ArticleDAO.html"
         },                {
             "fqsen": "\\App\\src\\DAO\\ArticleDAO\u003A\u003AbuildObject\u0028\u0029",
@@ -623,7 +623,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\DAO\\CommentDAO",
             "name": "CommentDAO",
-            "summary": "Data\u0020Acces\u0020Object.",
+            "summary": "Comment\u0020Data\u0020Access\u0020Object.",
             "url": "classes/App-src-DAO-CommentDAO.html"
         },                {
             "fqsen": "\\App\\src\\DAO\\CommentDAO\u003A\u003AbuildObject\u0028\u0029",
@@ -673,7 +673,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\DAO\\DAO",
             "name": "DAO",
-            "summary": "Data\u0020Acces\u0020Object.",
+            "summary": "Abstract\u0020class\u0020Data\u0020Acces\u0020Object.",
             "url": "classes/App-src-DAO-DAO.html"
         },                {
             "fqsen": "\\App\\src\\DAO\\DAO\u003A\u003AcheckConnection\u0028\u0029",
@@ -698,7 +698,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\DAO\\UserDAO",
             "name": "UserDAO",
-            "summary": "Data\u0020Acces\u0020Object.",
+            "summary": "User\u0020Data\u0020Access\u0020Object.",
             "url": "classes/App-src-DAO-UserDAO.html"
         },                {
             "fqsen": "\\App\\src\\DAO\\UserDAO\u003A\u003AbuildObject\u0028\u0029",
@@ -743,7 +743,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\model\\Article",
             "name": "Article",
-            "summary": "",
+            "summary": "Work\u0020with\u0020article\u0020entity.",
             "url": "classes/App-src-model-Article.html"
         },                {
             "fqsen": "\\App\\src\\model\\Article\u003A\u003AgetId\u0028\u0029",
@@ -868,7 +868,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\model\\Comment",
             "name": "Comment",
-            "summary": "",
+            "summary": "Work\u0020with\u0020comment\u0020entity.",
             "url": "classes/App-src-model-Comment.html"
         },                {
             "fqsen": "\\App\\src\\model\\Comment\u003A\u003AgetId\u0028\u0029",
@@ -978,7 +978,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\src\\model\\User",
             "name": "User",
-            "summary": "",
+            "summary": "Work\u0020with\u0020user\u0020entity.",
             "url": "classes/App-src-model-User.html"
         },                {
             "fqsen": "\\App\\src\\model\\User\u003A\u003AgetId\u0028\u0029",

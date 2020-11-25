@@ -4,6 +4,9 @@ namespace App\src\constraint;
 
 use App\config\Parameter;
 
+/**
+ * Set rules to used on articles fields.
+ */
 class ArticleValidation extends Validation
 {
     private $errors = [];

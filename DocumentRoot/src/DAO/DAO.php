@@ -5,9 +5,8 @@ use PDO;
 use Exception;
 
 /**
- * Data Acces Object.
+ * Abstract class Data Acces Object.
  */
-
 abstract class DAO
 {
 

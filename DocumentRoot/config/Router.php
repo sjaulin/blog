@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Router class.
- */
 namespace App\config;
 
 use App\src\controller\BackController;
