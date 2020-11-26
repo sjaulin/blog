@@ -9,8 +9,9 @@ class ErrorController extends Controller
         require './templates/error_404.php';
     }
 
-    public function errorServer($message = '')
+    public function errorServer($e)
     {
+        $message = $e->getMessage();
         require './templates/error_500.php';
     }
 }
