@@ -10,7 +10,7 @@ class Constraint
     public function notBlank($name, $value)
     {
         if (empty($value)) {
-            return '<p class="alert alert-danger" role="alert">Le champ '.$name.' saisi est vide</p>';
+            return '<p class="alert alert-danger" role="alert">Le champ '.$name.' est vide</p>';
         }
     }
 

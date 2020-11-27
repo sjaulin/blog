@@ -51,13 +51,13 @@ class ContactValidation extends Validation
     private function checkName($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('name', $value);
+            return $this->constraint->notBlank('prénom et nom', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('name', $value, 2);
+            return $this->constraint->minLength('prénom et nom', $value, 2);
         }
         if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('name', $value, 255);
+            return $this->constraint->maxLength('prénom et nom', $value, 255);
         }
     }
 

@@ -63,11 +63,11 @@ class UserValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('password', $value);
         }
-        if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('password', $value, 2);
+        if ($this->constraint->minLength($name, $value, 8)) {
+            return $this->constraint->minLength('password', $value, 8);
         }
-        if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('password', $value, 255);
+        if ($this->constraint->maxLength($name, $value, 20)) {
+            return $this->constraint->maxLength('password', $value, 20);
         }
     }
 }
