@@ -37,4 +37,8 @@ h3 {
 .menuside ul {
   margin-bottom: 20px;
 }
+
+form #submit {
+  margin-top: 1em;
+}
 /*# sourceMappingURL=style.css.map */
