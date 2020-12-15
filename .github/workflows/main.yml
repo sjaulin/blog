@@ -15,3 +15,8 @@ jobs:
         username: webmaster@javanais.org
         password: ${{ secrets.ftp_password }}
         server-dir: /blog/
+        exclude: .git/*
+          - environment.php
+          - docs/
+          - phpdoc.dist.xml
+          
