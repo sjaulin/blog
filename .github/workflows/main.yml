@@ -4,10 +4,7 @@ name: CI
 
 # Set your workflow to run on push events
 on:
-  push:
-    branches:
-    - main
-      
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
