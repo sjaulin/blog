@@ -18,3 +18,7 @@ RUN pecl install xdebug \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.13
+
+ENV LISTEN_PORT=80
+
+EXPOSE 80
