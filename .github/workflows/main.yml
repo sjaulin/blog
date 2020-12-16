@@ -5,6 +5,11 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
+    - name: Composer
+      uses: "ramsey/composer-install@v1"
+      with:
+        dependency-versions: "lowest"
+    
     - name: 🚚 Get latest code
       uses: actions/checkout@v2.3.2
     
@@ -18,6 +23,5 @@ jobs:
         server-dir: ./blog/
         exclude: .git/*
           - environment.php
-          - docs/
-          - phpdoc.dist.xml
-          
+          - docs/*
+          - phpdoc.dist.xml      
