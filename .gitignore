@@ -1,9 +1,9 @@
 .vscode/
 nbproject/
-DocumentRoot/.phpdoc/
-DocumentRoot/vendor/
-DocumentRoot/public/libraries/
-DocumentRoot/public/components/
-DocumentRoot/public/files/
-DocumentRoot/build/
-DocumentRoot/environment.php
+web/.phpdoc/
+web/vendor/
+web/public/libraries/
+web/public/components/
+web/public/files/
+web/build/
+web/environment.php
