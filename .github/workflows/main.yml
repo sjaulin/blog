@@ -14,8 +14,8 @@ jobs:
         server: ftp.online.net
         username: webmaster@javanais.org
         password: ${{ secrets.ftp_password }}
-        loac-dir: /DocumentRoot/
-        server-dir: /blog/
+        loac-dir: DocumentRoot/
+        server-dir: blog/
         exclude: .git/*
           - environment.php
           - docs/
