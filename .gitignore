@@ -1,6 +1,7 @@
 # IDE settings
 nbproject/
 .idea/
+.idea/**
 #.vscode/
 
 web/.phpdoc/

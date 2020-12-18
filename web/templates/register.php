@@ -1,4 +1,5 @@
 <div class="py-5 text-center">
+<?= $this->session->show('alert'); ?>
     <h2>Inscription</h2>
     <form method="post" action="/index.php?route=register">
         <label for="pseudo">Pseudo *</label><br>
