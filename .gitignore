@@ -1,5 +1,8 @@
-.vscode/
+# IDE settings
 nbproject/
+.idea/
+#.vscode/
+
 web/.phpdoc/
 web/vendor/
 web/public/libraries/
