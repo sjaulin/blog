@@ -50,6 +50,9 @@ class ArticleValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('titre', $value);
         }
+        if ($this->constraint->noTags($name, $value)) {
+            return $this->constraint->noTags('titre', $value);
+        }
         if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('titre', $value, 2);
         }
