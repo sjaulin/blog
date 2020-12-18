@@ -100,12 +100,11 @@ class BackController extends Controller
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                     $this->session->set('alert', 'L\' article a bien été modifié');
                     header('Location: index.php?route=admin_article');
+                    die;
                 }
                 // With some errors.
-                return $this->view->renderAdmin('edit_article', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
+                header('Location: index.php?route=editArticle&articleid=' . $articleId);
+                die;
             }
 
             // the form is displayed, set default form values.

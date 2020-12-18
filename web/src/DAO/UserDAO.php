@@ -40,14 +40,12 @@ class UserDAO extends DAO
         $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2]);
     }
 
-    public function checkUser(Parameter $post)
+    public function checkUserExist(Parameter $post)
     {
         $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
         $result = $this->createQuery($sql, [$post->get('pseudo')]);
-        $isUnique = $result->fetchColumn();
-        if ($isUnique) {
-            return '<p>Le pseudo existe déjà</p>';
-        }
+        $isexist = $result->fetchColumn();
+        return $isexist ? true : false;
     }
 
     public function login(Parameter $post)

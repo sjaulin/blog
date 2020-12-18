@@ -109,7 +109,7 @@ class Article
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = strip_tags($content, '<br><p><strong><em><s><ul><li><img><a><span>');
     }
 
     /**

@@ -1,0 +1,27 @@
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Composer
+      uses: "ramsey/composer-install@v1"
+      with:
+        dependency-versions: "lowest"
+    
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ftp.online.net
+        username: webmaster@javanais.org
+        password: ${{ secrets.ftp_password }}
+        local-dir: ./DocumentRoot/
+        server-dir: ./blog/
+        exclude: .git/*
+          - environment.php
+          - docs/*
+          - phpdoc.dist.xml      

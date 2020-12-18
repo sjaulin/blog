@@ -31,7 +31,12 @@ class Session
         if (isset($_SESSION[$name])) {
             $key = $this->get($name);
             $this->remove($name);
-            return $key;
+            if (!empty($key)) {
+                if (is_array($key) && !empty($key['type']) && !empty($key['value'])) {
+                    return '<p class="alert alert-' . $key['type'] . '">' . $key['value'] . '</p>';
+                }
+                return '<p class="alert alert-primary">' . $key . '</p>';
+            }
         }
     }
 

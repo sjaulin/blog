@@ -13,12 +13,13 @@ RUN sed -i '/#!\/bin\/sh/aservice sendmail restart' /usr/local/bin/docker-php-en
 RUN sed -i '/#!\/bin\/sh/aecho "$(hostname -i)\t$(hostname) $(hostname).localhost" >> /etc/hosts' /usr/local/bin/docker-php-entrypoint
 
 # Install xdebug
-RUN pecl install xdebug \
+RUN pecl install xdebug-2.9.8 \
     && docker-php-ext-enable xdebug
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.13
 
+# TODO tester en supprimant la ligne
 ENV LISTEN_PORT=80
 
 EXPOSE 80

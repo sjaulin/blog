@@ -51,13 +51,16 @@ class ContactValidation extends Validation
     private function checkName($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('prénom et nom', $value);
+            return $this->constraint->notBlank('nom', $value);
+        }
+        if ($this->constraint->noTags($name, $value)) {
+            return $this->constraint->noTags('nom', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('prénom et nom', $value, 2);
+            return $this->constraint->minLength('nom', $value, 2);
         }
         if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('prénom et nom', $value, 255);
+            return $this->constraint->maxLength('nom', $value, 255);
         }
     }
 
@@ -65,6 +68,9 @@ class ContactValidation extends Validation
     {
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('mail', $value);
+        }
+        if ($this->constraint->noTags($name, $value)) {
+            return $this->constraint->noTags('mail', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('mail', $value, 2);
@@ -78,6 +84,9 @@ class ContactValidation extends Validation
     {
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('message', $value);
+        }
+        if ($this->constraint->noTags($name, $value)) {
+            return $this->constraint->noTags('message', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('message', $value, 2);
