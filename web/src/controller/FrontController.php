@@ -49,9 +49,14 @@ class FrontController extends Controller
     public function addComment(Parameter $post, $articleId)
     {
         if ($this->checkLoggedIn() && $post->get('submit')) {
-            $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
-            $this->session->set('alert', 'Le nouveau commentaire a bien été ajouté');
+            $errors = $this->validation->validate($post, 'Comment');
+            // no error.
+            if (!$errors) {
+                $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
+                $this->session->set('alert', array('type' => 'success', 'value' => 'Le nouveau commentaire a bien été ajouté'));
+            }
             header('Location: index.php?route=article&articleId='.$articleId);
+            die;
         }
     }
 
@@ -68,18 +73,23 @@ class FrontController extends Controller
     {
         if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'User');
-            if ($this->userDAO->checkUser($post)) {
-                $errors['pseudo'] = $this->userDAO->checkUser($post);
-            }
+            // No error
             if (!$errors) {
-                $this->userDAO->register($post);
-                $this->session->set('alert', 'Votre inscription a bien été effectuée');
-                header('Location: index.php');
+                if ($this->userDAO->checkUserExist($post)) {
+                    $this->session->set('alert', 'Ce pseudo est déjà utilisé');
+                    header('Location: index.php?route=register');
+                    die;// avoid second redirect and keep session alert.
+                }
+                else {
+                    $this->userDAO->register($post);
+                    $this->session->set('alert', 'Votre inscription a bien été effectuée');
+                    header('Location: index.php');
+                    die;// avoid second redirect and keep session alert.
+                }
             }
-            return $this->view->render('register', [
-                'post' => $post,
-                'errors' => $errors
-            ]);
+            // Some errors
+            header('Location: index.php?route=register');
+            die;// avoid second redirect and keep session alert.
         }
         return $this->view->render('register');
     }
@@ -122,13 +132,12 @@ class FrontController extends Controller
                     $post->get('message')
                 );
                 $this->session->set('alert', 'Votre message a bien été envoyé !');
-                header('Location: index.php');
+                header('Location: index.php');// avoid second redirect and keep session alert.
+                die;
             }
             // With some errors.
-            return $this->view->render('contact', [
-                'post' => $post,
-                'errors' => $errors
-            ]);
+            header('Location: index.php?route=contact');
+            die;// avoid second redirect and keep session alert.
         }
         // the form is displayed, set default form values.
         return $this->view->render('contact');

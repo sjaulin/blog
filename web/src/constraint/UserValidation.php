@@ -50,6 +50,9 @@ class UserValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('pseudo', $value);
         }
+        if ($this->constraint->noTags($name, $value)) {
+            return $this->constraint->noTags('pseudo', $value);
+        }
         if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('pseudo', $value, 2);
         }

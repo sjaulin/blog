@@ -1,4 +1,6 @@
 {
+    "name": "sjaulin/blog-ocr",
+    "description": "A simple PHP blog",
     "autoload": {
         "psr-4": {
             "App\\config\\": "./config/",
