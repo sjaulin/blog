@@ -1,4 +1,4 @@
-# Mon blog
+# Blog
 
 Code Climate :
 [![Maintainability](https://api.codeclimate.com/v1/badges/ce6c2859b6545a32c2a4/maintainability)](https://codeclimate.com/github/sjaulin/blog-ocr/maintainability)
@@ -29,7 +29,7 @@ docker exec -it blog-ocr_php-apache_1  /bin/bash
 https://www.apachefriends.org/
 
 ## 2. Sources
-Clone git project and put all files from DocumentRoot folder to your web server documentRoot 
+Clone git project and put all files from web folder to your web server documentRoot 
 
 ## 3. Configure your environment
 - Modify config/environment.example.php with your config 
