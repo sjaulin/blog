@@ -32,8 +32,8 @@ https://www.apachefriends.org/
 Clone git project and put all files from web folder to your web server documentRoot 
 
 ## 3. Configure your environment
-- Modify config/environment.example.php with your config 
-- Rename file to config/environment.php
+- Modify environment.example.php with your config 
+- Rename file to environment.php
 
 ## 4. Dependencies & autoload
 ```

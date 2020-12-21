@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "172270ce3eb33edba4cc7efa7f1e7349",
+    "content-hash": "a4f8345fd5bf591a32fc6ed04ec90d47",
     "packages": [
         {
             "name": "ckfinder/ckfinder",

@@ -9,7 +9,12 @@ services:
         ports:
             - 80:80
         volumes:
-            - ./web:/var/www/html:z
+            - ./html:/var/www/html:z
+            - ./environment.php:/var/www/environment.php
+            - ./vendor:/var/www/vendor
+            - ./config:/var/www/config
+            - ./src:/var/www/src
+            - ./phpdoc.dist.xml:/var/www/phpdoc.dist.xml
         links:
             - 'mariadb'
 

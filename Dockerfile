@@ -1,5 +1,5 @@
 FROM php:7.3-apache 
-RUN apt-get update -y && apt-get install -y libzip-dev unzip git libpng-dev sendmail
+RUN apt-get update -y && apt-get install -y libzip-dev unzip git libpng-dev sendmail wget
 
 RUN echo "sendmail_path=/usr/sbin/sendmail -t -i" >> /usr/local/etc/php/conf.d/sendmail.ini 
 
@@ -18,6 +18,9 @@ RUN pecl install xdebug-2.9.8 \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.13
+
+# Install PhpDoc
+RUN wget https://phpdoc.org/phpDocumentor.phar && chmod +x phpDocumentor.phar && mv phpDocumentor.phar /usr/local/bin/phpDocumentor
 
 # TODO tester en supprimant la ligne
 ENV LISTEN_PORT=80

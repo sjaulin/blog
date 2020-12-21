@@ -29,15 +29,15 @@
     "extra": {
         "installer-types": ["php-lib"],
         "installer-paths": {
-            "public/libraries/php/{$name}": ["type:php-lib"]
+            "web/public/libraries/php/{$name}": ["type:php-lib"]
         }
     },
     "scripts": {
         "post-update-cmd": [
-            "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
+            "php -r \"copy('ckfinder-config.php', 'web/public/libraries/php/ckfinder/config.php');\""
         ],
         "post-install-cmd": [
-            "php -r \"copy('../ckfinder-config.php', 'public/libraries/php/ckfinder/config.php');\""
+            "php -r \"copy('ckfinder-config.php', 'web/public/libraries/php/ckfinder/config.php');\""
         ]
     }
 }
