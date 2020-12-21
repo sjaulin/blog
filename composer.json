@@ -34,10 +34,10 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "php -r \"copy('ckfinder-config.php', 'web/public/libraries/php/ckfinder/config.php');\""
+            "php -r \"copy('ckfinder-config.php', 'html/public/libraries/php/ckfinder/config.php');\""
         ],
         "post-install-cmd": [
-            "php -r \"copy('ckfinder-config.php', 'web/public/libraries/php/ckfinder/config.php');\""
+            "php -r \"copy('ckfinder-config.php', 'html/public/libraries/php/ckfinder/config.php');\""
         ]
     }
 }
