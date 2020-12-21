@@ -1,6 +1,7 @@
 {
     "name": "sjaulin/blog-ocr",
     "description": "A simple PHP blog",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "App\\config\\": "./config/",
@@ -9,7 +10,7 @@
     },
     "require": {
         "oomphinc/composer-installers-extender": "^1.1",
-        "ckfinder/ckfinder": "3.5.1.1",
+        "ckfinder/ckfinder": "~3.5",
         "phpmailer/phpmailer": "~6.1"
     },
     "repositories": [
@@ -29,7 +30,7 @@
     "extra": {
         "installer-types": ["php-lib"],
         "installer-paths": {
-            "web/public/libraries/php/{$name}": ["type:php-lib"]
+            "html/public/libraries/php/{$name}": ["type:php-lib"]
         }
     },
     "scripts": {
