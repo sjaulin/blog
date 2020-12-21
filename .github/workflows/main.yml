@@ -16,11 +16,11 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ftp.online.net
-        username: webmaster@javanais.org
-        password: ${{ secrets.ftp_password }}
-        local-dir: ./DocumentRoot/
-        server-dir: ./blog/
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./web/
+        server-dir: ${{ secrets.FTP_DIR }}
         exclude: .git/*
           - environment.php
           - docs/*
