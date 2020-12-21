@@ -14,9 +14,17 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./web/
+        local-dir: ./html/docs/
         server-dir: ${{ secrets.FTP_DIR }}
         exclude: .git/*
-          - environment.php
+          - .gitignore
+          - Dockerfile
+          - docker-compose.yml
+          - Procfile
+          - ckfinder-config.php
+          - composer.json
+          - database.sql
+          - environment.example.php
           - docs/*
-          - phpdoc.dist.xml      
+          - phpdoc.dist.xml
+          - docker-compose.yml
