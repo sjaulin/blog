@@ -28,4 +28,3 @@ jobs:
           - phpdoc.dist.xml
           - Procfile
           - environment.example.php
-          - html/docs
