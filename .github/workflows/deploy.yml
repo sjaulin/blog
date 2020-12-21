@@ -17,7 +17,14 @@ jobs:
         local-dir: ./html/docs/
         server-dir: ${{ secrets.FTP_DIR }}
         exclude: .git/*
+          - .gitignore
+          - ckfinder-config.php
+          - composer.json
+          - database.sql
+          - docker-compose.yml
+          - Dockerfile
           - environment.example.php
-          - docs/*
           - phpdoc.dist.xml
-          - docker-compose.yml      
+          - Procfile
+          - environment.example.php
+          - html/docs
