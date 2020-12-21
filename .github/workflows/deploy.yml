@@ -18,13 +18,13 @@ jobs:
         server-dir: ${{ secrets.FTP_DIR }}
         exclude: .git/*
           - .gitignore
-          - Dockerfile
-          - docker-compose.yml
-          - Procfile
           - ckfinder-config.php
           - composer.json
           - database.sql
-          - environment.example.php
-          - docs/*
-          - phpdoc.dist.xml
           - docker-compose.yml
+          - Dockerfile
+          - environment.example.php
+          - phpdoc.dist.xml
+          - Procfile
+          - environment.example.php
+          - html/docs
