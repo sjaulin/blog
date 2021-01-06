@@ -1,0 +1,31 @@
+@startuml
+title UseCase - Manage comments
+left to right direction
+
+actor "Admin" as ad
+rectangle ValiderCommentaire {
+    usecase "Valider le commentaire" as UC11
+    usecase "S'authentifier en admin" as UC12
+    usecase "Consulter le commentaire" as UC13
+    usecase "Lister les comentaires à valider" as UC14
+
+    UC11 -left-> UC12 : include
+    UC11 -up-> UC13 : include
+    UC13 -up-> UC14 : include
+}
+ad -left-> UC11
+
+actor "Visiteur" as vi
+rectangle AjouterCommentaire {
+    usecase "Ajouter un commentaire" as UC1
+    usecase "S'authentifier" as UC2
+    usecase "Consulter l'article" as UC3
+    usecase "Lister les articles" as UC4
+
+    UC1 -left-> UC2 : include
+    UC1 -up-> UC3 : include
+    UC3 -up-> UC4 : include
+}
+vi -left-> UC1
+
+@enduml
