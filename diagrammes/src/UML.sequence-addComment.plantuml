@@ -1,5 +1,5 @@
 @startuml
-title Ajout d'un commentaire
+title Sequence - Add comment
 actor Abonné
 collections EspaceAbonné 
 collections Commentaire

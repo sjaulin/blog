@@ -1,8 +1,12 @@
 @startuml
+left to right direction
+title Classes
+
 class User {
   pseudo
   password
   createdDate
+  roleId
 }
 
 class Article {
@@ -19,6 +23,8 @@ class Comment {
     author
     content
     createdDate
+    published
+    flag
 }
 
 User "1" --- "0..*" Article

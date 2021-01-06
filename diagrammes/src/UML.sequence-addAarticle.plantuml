@@ -1,5 +1,5 @@
 @startuml
-title Création d'un article
+title Sequence - Add article
 actor Admin
 collections Administration
 collections Article 

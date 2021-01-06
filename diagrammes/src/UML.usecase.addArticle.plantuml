@@ -1,0 +1,11 @@
+@startuml
+title UseCase - Add article
+left to right direction
+actor "Admin" as ad
+rectangle AjoiuterArticle {
+  usecase "Ajouter un commentaire" as UC1
+  usecase "S'authentifier en admin" as UC30
+  UC1 .> UC30 : include
+}
+ad --> UC1
+@enduml
