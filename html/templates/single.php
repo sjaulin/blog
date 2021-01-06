@@ -5,7 +5,7 @@
     <?php if ($this->session->get('pseudo') && $this->session->get('role') === 'admin') { ?>
         <div class="actions">
             <a href="/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a> -
-            <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+            <a href="/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>&token=<?= $token; ?>">Supprimer</a>
         </div>
     <?php } ?>
 
